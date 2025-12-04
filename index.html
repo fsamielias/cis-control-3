@@ -93,7 +93,7 @@
         
         /* Utility för fetstil i beskrivningar */
         .desc-content b, .desc-content strong {
-            color: #e2e8f0; /* Ljusare slate för emphasis */
+            color: #fb923c; /* Orange-400 för emphasis/pop-out */
             font-weight: 700;
         }
     </style>
@@ -124,12 +124,19 @@
                 </div>
             </div>
             
-            <!-- Language Toggle Switch -->
-            <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center space-x-1 bg-slate-900/80 border border-slate-700 rounded px-2 py-1 text-xs font-mono font-bold tracking-wider hover:border-cyan-500 active:scale-95 transition-all">
-                <span id="lang-en" class="text-cyan-400">EN</span>
-                <span class="text-slate-600">|</span>
-                <span id="lang-sv" class="text-slate-500">SV</span>
-            </button>
+            <div class="flex items-center space-x-3">
+                <!-- IG Info Button -->
+                <button onclick="navigateToIG()" class="flex items-center space-x-1 bg-slate-900/80 border border-slate-700 rounded px-2 py-1 text-xs font-mono font-bold tracking-wider hover:border-cyan-500 active:scale-95 transition-all text-cyan-400">
+                    <span>IG INFO</span>
+                </button>
+
+                <!-- Language Toggle Switch -->
+                <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center space-x-1 bg-slate-900/80 border border-slate-700 rounded px-2 py-1 text-xs font-mono font-bold tracking-wider hover:border-cyan-500 active:scale-95 transition-all">
+                    <span id="lang-en" class="text-cyan-400">EN</span>
+                    <span class="text-slate-600">|</span>
+                    <span id="lang-sv" class="text-slate-500">SV</span>
+                </button>
+            </div>
         </header>
 
         <!-- Main Content Area -->
@@ -145,6 +152,42 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // IG Data definition
+        const igData = {
+            title: "Implementation Groups",
+            title_sv: "Implementeringsgrupper",
+            icon: "layers",
+            groups: [
+                {
+                    id: "IG1",
+                    color: "text-emerald-400",
+                    border: "border-emerald-500/30",
+                    title: "Essential Cyber Hygiene",
+                    title_sv: "Grundläggande Cyberhygien",
+                    description: "An <b>IG1</b> enterprise is small to medium-sized with limited IT and cybersecurity expertise. The principal concern is to keep the business operational. Focus on <b>thwarting general, non-targeted attacks</b>.",
+                    description_sv: "Ett <b>IG1</b>-företag är litet till medelstort med begränsad IT- och cybersäkerhetskompetens. Huvudfokus är att hålla verksamheten igång. Fokus ligger på att <b>avvärja allmänna, icke-riktade attacker</b>."
+                },
+                {
+                    id: "IG2",
+                    color: "text-cyan-400",
+                    border: "border-cyan-500/30",
+                    title: "Enterprise",
+                    title_sv: "Företag",
+                    description: "An <b>IG2</b> enterprise employs individuals responsible for managing and protecting IT infrastructure. Includes <b>IG1</b>. These enterprises often store and process <b>sensitive client or enterprise information</b>.",
+                    description_sv: "Ett <b>IG2</b>-företag har personal som ansvarar för att hantera och skydda IT-infrastruktur. Inkluderar <b>IG1</b>. Dessa företag lagrar och behandlar ofta <b>känslig kund- eller företagsinformation</b>."
+                },
+                {
+                    id: "IG3",
+                    color: "text-violet-400",
+                    border: "border-violet-500/30",
+                    title: "Enterprise Security",
+                    title_sv: "Företagssäkerhet",
+                    description: "An <b>IG3</b> enterprise employs security experts. Includes <b>IG1 and IG2</b>. Must address availability, confidentiality, and integrity of sensitive data. Targets of <b>sophisticated, targeted attacks</b>.",
+                    description_sv: "Ett <b>IG3</b>-företag har säkerhetsexperter. Inkluderar <b>IG1 och IG2</b>. Måste hantera tillgänglighet, konfidentialitet och integritet för känslig data. Mål för <b>sofistikerade, riktade attacker</b>."
+                }
+            ]
+        };
+
         // Data med översättningar och detaljerad info
         // Fetstil (Bold) används för att markera nyckelord (Bold Strategy)
         const controls = [
@@ -1720,8 +1763,12 @@
                     newText = currentLang === 'sv' ? data.title_sv : data.title;
                 } 
                 else if (el.id === 'detail-title') {
-                    const data = controls.find(c => c.id === activeControlId);
-                    if(data) newText = currentLang === 'sv' ? data.title_sv : data.title;
+                    if (activeControlId === 'ig-info') {
+                        newText = currentLang === 'sv' ? igData.title_sv : igData.title;
+                    } else {
+                        const data = controls.find(c => c.id === activeControlId);
+                        if(data) newText = currentLang === 'sv' ? data.title_sv : data.title;
+                    }
                 }
                 // Static headers
                 else if (el.dataset.staticText) {
@@ -1733,6 +1780,13 @@
                     };
                     if (staticDict[key]) {
                         newText = staticDict[key][currentLang];
+                    }
+                }
+                // IG titles
+                else if (el.dataset.igIndex) {
+                    const idx = parseInt(el.dataset.igIndex);
+                    if (igData && igData.groups && igData.groups[idx]) {
+                        newText = currentLang === 'sv' ? igData.groups[idx].title_sv : igData.groups[idx].title;
                     }
                 }
                 else if (el.dataset.safeguardTitleIndex) {
@@ -1749,7 +1803,6 @@
             });
 
             // För HTML-innehåll (Beskrivningar med fetstil) byter vi direkt med innerHTML
-            // eftersom Wipe-effekten skulle förstöra HTML-taggarna (<b>).
             const htmlElements = document.querySelectorAll('.html-target');
             htmlElements.forEach(el => {
                 let newHtml = "";
@@ -1764,6 +1817,12 @@
                     const data = controls.find(c => c.id === activeControlId);
                     if(data && data.safeguards && data.safeguards[idx]) {
                         newHtml = currentLang === 'sv' ? data.safeguards[idx].description_sv : data.safeguards[idx].description;
+                    }
+                }
+                else if (el.dataset.igDescIndex) {
+                    const idx = parseInt(el.dataset.igDescIndex);
+                    if(igData && igData.groups && igData.groups[idx]) {
+                        newHtml = currentLang === 'sv' ? igData.groups[idx].description_sv : igData.groups[idx].description;
                     }
                 }
 
@@ -1846,6 +1905,13 @@
             render();
         }
 
+        function navigateToIG() {
+            activeControlId = 'ig-info';
+            window.history.pushState({ controlId: 'ig-info', view: 'ig-detail' }, '');
+            window.scrollTo(0, 0);
+            render();
+        }
+
         function navigateBack() {
             window.history.back();
         }
@@ -1863,6 +1929,9 @@
             if (!activeControlId) {
                 renderListView(mainEl);
                 if(footerEl) footerEl.style.display = 'block';
+            } else if (activeControlId === 'ig-info') {
+                renderIGView(mainEl);
+                if(footerEl) footerEl.style.display = 'none';
             } else {
                 renderDetailView(mainEl, activeControlId);
                 if(footerEl) footerEl.style.display = 'none';
@@ -1918,6 +1987,54 @@
                 </div>
             `;
             container.innerHTML = html;
+        }
+
+        function renderIGView(container) {
+            const title = currentLang === 'sv' ? igData.title_sv : igData.title;
+
+            container.innerHTML = `
+                <div class="animate-fade-in pb-10">
+                    <div class="flex items-center justify-between mb-6 sticky top-20 z-10">
+                        <button onclick="navigateBack()" 
+                            class="flex items-center space-x-2 bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-full text-cyan-400 hover:text-cyan-300 hover:border-cyan-500 active:scale-95 transition-all touch-manipulation shadow-lg">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            <span class="font-mono text-xs font-bold tracking-widest">TILLBAKA</span>
+                        </button>
+                        <span class="text-xs font-mono text-slate-600">DEFINITIONS</span>
+                    </div>
+
+                    <div class="mb-8 w-full max-w-2xl mx-auto text-center">
+                        <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-slate-950 border border-slate-800 shadow-inner">
+                            <i data-lucide="${igData.icon}" class="w-8 h-8 text-cyan-500"></i>
+                        </div>
+                        <h2 id="detail-title" class="effect-target text-2xl md:text-3xl font-bold text-orange-400 mb-2 leading-tight">
+                            ${title}
+                        </h2>
+                    </div>
+
+                    <div class="w-full max-w-2xl mx-auto text-left space-y-4">
+                        ${igData.groups.map((group, idx) => {
+                            const groupTitle = currentLang === 'sv' ? group.title_sv : group.title;
+                            const groupDesc = currentLang === 'sv' ? group.description_sv : group.description;
+                            return `
+                                <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-lg hover:border-cyan-900/50 transition-colors">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <div class="font-mono text-lg font-bold ${group.color} border-b-2 ${group.border} pb-1">
+                                            ${group.id}
+                                        </div>
+                                    </div>
+                                    <h4 class="effect-target text-sm font-bold text-slate-200 mb-2" data-ig-index="${idx}">
+                                        ${groupTitle}
+                                    </h4>
+                                    <p class="html-target desc-content text-xs text-slate-400 leading-relaxed" data-ig-desc-index="${idx}">
+                                        ${groupDesc}
+                                    </p>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
         }
 
         function renderDetailView(container, id) {
