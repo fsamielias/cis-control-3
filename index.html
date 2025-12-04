@@ -2,7 +2,8 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#020617"> <!-- Matchar bakgrundsfärgen för app-känsla -->
     <title>CIS Defense v8.1</title>
     
     <!-- Tailwind CSS via CDN -->
@@ -22,8 +23,8 @@
                         }
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
@@ -35,6 +36,9 @@
                             '0%': { transform: 'translateY(20px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' },
                         }
+                    },
+                    screens: {
+                        'xs': '375px', // Extra liten breakpoint för små mobiler
                     }
                 }
             }
@@ -44,7 +48,7 @@
     <style>
         /* Custom scrollbar för sci-fi känsla */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px; /* Smalare scrollbar för mobil */
         }
         ::-webkit-scrollbar-track {
             background: #020617; 
@@ -58,10 +62,16 @@
         }
         body {
             -webkit-tap-highlight-color: transparent; /* Tar bort blå highlight vid touch på Android */
+            overscroll-behavior-y: none; /* Förhindrar "bounce" effekt på hela sidan */
+        }
+        /* Förbättrar textrendering */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
     </style>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden">
+<body class="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden pb-[env(safe-area-inset-bottom)]">
 
     <!-- Bakgrundseffekter -->
     <div class="fixed inset-0 pointer-events-none z-0">
@@ -71,18 +81,19 @@
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-violet-900/10 blur-[100px] rounded-full"></div>
     </div>
 
-    <div class="relative z-10 max-w-5xl mx-auto p-4 md:p-6 pb-20">
+    <div class="relative z-10 max-w-5xl mx-auto p-4 pb-24">
         
         <!-- Header -->
-        <header class="mb-8 flex items-center justify-between border-b border-cyan-900/30 pb-4 sticky top-0 bg-slate-950/80 backdrop-blur-md z-20 pt-2">
+        <header class="mb-6 flex items-center justify-between border-b border-cyan-900/30 pb-4 sticky top-0 bg-slate-950/90 backdrop-blur-xl z-30 pt-safe-top transition-all duration-300">
             <div class="flex items-center space-x-3">
                 <div class="relative">
                     <i data-lucide="shield" class="w-8 h-8 text-cyan-400"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 uppercase font-mono">
-                        CIS DEFENSE <span class="text-xs text-slate-500 align-top ml-1">v8.1</span>
+                    <h1 class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 uppercase font-mono leading-none">
+                        CIS DEFENSE
                     </h1>
+                    <span class="text-[10px] text-slate-500 font-mono tracking-widest">v8.1 MOBILE PROTOCOL</span>
                 </div>
             </div>
         </header>
@@ -92,8 +103,8 @@
             <!-- Innehåll renderas här via JavaScript -->
         </main>
 
-        <!-- Footer -->
-        <footer class="mt-20 border-t border-slate-900 pt-6 text-center text-slate-700 text-[10px] font-mono">
+        <!-- Footer (dold på detaljvyn för mer yta) -->
+        <footer id="app-footer" class="mt-12 border-t border-slate-900 pt-6 text-center text-slate-700 text-[10px] font-mono pb-safe-bottom">
             <div>CIS Controls Framework v8.1</div>
         </footer>
     </div>
@@ -159,11 +170,14 @@
         // Render Functions
         function render() {
             const mainEl = document.getElementById('app-content');
+            const footerEl = document.getElementById('app-footer');
             
             if (!activeControlId) {
                 renderListView(mainEl);
+                if(footerEl) footerEl.style.display = 'block';
             } else {
                 renderDetailView(mainEl, activeControlId);
+                if(footerEl) footerEl.style.display = 'none'; // Dölj footer i detaljvy för mer utrymme
             }
             
             // Uppdatera ikoner efter rendering
@@ -173,7 +187,7 @@
         function renderListView(container) {
             let html = `
                 <div class="animate-slide-up">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
             `;
 
             controls.forEach(control => {
@@ -182,30 +196,35 @@
                 
                 html += `
                     <button onclick="navigateToControl(${control.id})" 
-                        class="group relative w-full flex items-start space-x-4 p-5 bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-300 text-left rounded-sm overflow-hidden">
+                        class="group relative w-full flex items-center space-x-4 p-4 bg-slate-900/60 border border-slate-800/80 
+                               hover:border-cyan-500/50 hover:bg-slate-800/80 
+                               active:scale-[0.98] active:bg-slate-800 active:border-cyan-500/30
+                               transition-all duration-200 text-left rounded-lg overflow-hidden touch-manipulation">
                         
                         <!-- Hover Effect Background -->
                         <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                         
                         <!-- Icon Container -->
-                        <div class="relative flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded bg-slate-950 border border-slate-700 flex items-center justify-center group-hover:border-cyan-400/50 transition-all">
+                        <div class="relative flex-shrink-0">
+                            <div class="w-10 h-10 rounded-md bg-slate-950 border border-slate-700/50 flex items-center justify-center group-hover:border-cyan-400/50 transition-all">
                                 <i data-lucide="${control.icon}" class="w-5 h-5 text-slate-400 group-hover:text-cyan-400 transition-colors"></i>
                             </div>
                         </div>
 
                         <!-- Text Content -->
-                        <div>
-                            <div class="text-[10px] font-mono text-cyan-700 mb-1 group-hover:text-cyan-400">
+                        <div class="flex-1 min-w-0">
+                            <div class="text-[10px] font-mono text-cyan-700 mb-0.5 group-hover:text-cyan-400 font-medium">
                                 CIS-${idStr}
                             </div>
-                            <h3 class="text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-tight">
+                            <h3 class="text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug truncate">
                                 ${control.title}
                             </h3>
                         </div>
 
-                        <!-- Corner Accent -->
-                        <div class="absolute top-0 right-0 w-0 h-0 border-t-[8px] border-r-[8px] border-t-transparent border-r-cyan-500/0 group-hover:border-r-cyan-500 transition-all"></div>
+                        <!-- Chevron Right (Mobile hint) -->
+                        <div class="text-slate-700 group-hover:text-cyan-500 transition-colors">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </div>
                     </button>
                 `;
             });
@@ -219,47 +238,49 @@
 
         function renderDetailView(container, id) {
             const data = controls.find(c => c.id === id);
-            if (!data) return; // Should handle error
+            if (!data) return; 
             
             const idStr = data.id.toString().padStart(2, '0');
 
             container.innerHTML = `
-                <div class="animate-fade-in">
-                    <!-- Navigation & Breadcrumbs -->
-                    <div class="flex items-center space-x-2 text-xs font-mono text-slate-500 mb-6">
-                        <span class="hover:text-cyan-400 cursor-pointer" onclick="navigateBack()">HOME</span>
-                        <span class="text-slate-700">/</span>
-                        <span class="text-cyan-400">CIS-${idStr}</span>
+                <div class="animate-fade-in pb-10">
+                    <!-- Navigation Bar inside Detail View -->
+                    <div class="flex items-center justify-between mb-6 sticky top-20 z-10">
+                        <button onclick="navigateBack()" 
+                            class="flex items-center space-x-2 bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-full text-cyan-400 hover:text-cyan-300 hover:border-cyan-500 active:scale-95 transition-all touch-manipulation shadow-lg">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            <span class="font-mono text-xs font-bold tracking-widest">TILLBAKA</span>
+                        </button>
+                        <span class="text-xs font-mono text-slate-600">MODUL ${idStr}</span>
                     </div>
 
-                    <button onclick="navigateBack()" class="group flex items-center space-x-2 text-cyan-400 hover:text-cyan-300 mb-8 transition-colors">
-                        <div class="p-1 rounded-full border border-cyan-900 group-hover:border-cyan-400 transition-colors">
-                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                        </div>
-                        <span class="font-mono text-sm tracking-widest group-hover:translate-x-1 transition-transform">TILLBAKA</span>
-                    </button>
-
-                    <div class="relative border border-slate-800 bg-slate-900/30 p-8 md:p-12 rounded-lg flex flex-col items-center justify-center text-center min-h-[400px] overflow-hidden">
+                    <div class="relative border border-slate-800 bg-slate-900/40 p-6 md:p-12 rounded-2xl flex flex-col items-center justify-center text-center min-h-[50vh] overflow-hidden shadow-2xl">
                         <!-- Decorative Elements -->
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
                         <div class="absolute bottom-0 left-0 w-full h-px bg-slate-800"></div>
-                        <div class="absolute top-10 right-10 opacity-20 rotate-12">
-                             <i data-lucide="cpu" class="w-24 h-24 text-slate-800"></i>
+                        <div class="absolute top-6 right-6 opacity-10 rotate-12 pointer-events-none">
+                             <i data-lucide="cpu" class="w-32 h-32 text-slate-500"></i>
                         </div>
                         
                         <!-- Header for Specific Control -->
-                        <div class="mb-12 relative z-10 w-full max-w-2xl">
-                            <h2 class="text-2xl md:text-4xl font-bold text-orange-400 mb-2">${data.title}</h2>
-                            <div class="h-px w-24 bg-cyan-500 mx-auto mt-6"></div>
+                        <div class="mb-10 relative z-10 w-full max-w-2xl">
+                            <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-slate-950 border border-slate-800 shadow-inner">
+                                <i data-lucide="${data.icon}" class="w-8 h-8 text-cyan-500"></i>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-orange-400 mb-4 leading-tight">${data.title}</h2>
+                            <div class="h-1 w-16 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto rounded-full opacity-60"></div>
                         </div>
 
                         <!-- Construction Message -->
-                        <div class="relative z-10 p-6 border border-amber-500/30 bg-amber-500/5 rounded max-w-md w-full animate-pulse-slow">
-                            <div class="flex flex-col items-center space-y-3">
-                                <i data-lucide="triangle-alert" class="w-10 h-10 text-amber-500"></i>
-                                <h3 class="text-xl font-mono text-amber-400 uppercase tracking-widest">
-                                    Under Construction
-                                </h3>
+                        <div class="relative z-10 w-full">
+                            <div class="mx-auto p-5 border border-amber-500/20 bg-amber-500/5 rounded-xl max-w-xs w-full animate-pulse-slow backdrop-blur-sm">
+                                <div class="flex flex-col items-center space-y-3">
+                                    <i data-lucide="triangle-alert" class="w-8 h-8 text-amber-500"></i>
+                                    <h3 class="text-sm font-mono text-amber-400 uppercase tracking-widest font-bold">
+                                        Under Construction
+                                    </h3>
+                                    <p class="text-[10px] text-amber-500/60 font-mono">DATA INJECTION PENDING...</p>
+                                </div>
                             </div>
                         </div>
 
