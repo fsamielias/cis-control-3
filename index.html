@@ -80,6 +80,22 @@
             vertical-align: text-bottom;
             animation: blink 1s step-end infinite;
         }
+
+        /* Tab styles */
+        .tab-active {
+            border-bottom: 2px solid #22d3ee; /* Cyan-400 */
+            color: #22d3ee;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #64748b; /* Slate-500 */
+        }
+        
+        /* Utility för fetstil i beskrivningar */
+        .desc-content b, .desc-content strong {
+            color: #e2e8f0; /* Ljusare slate för emphasis */
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden pb-[env(safe-area-inset-bottom)]">
@@ -129,9 +145,66 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Data med översättningar
+        // Data med översättningar och detaljerad info för Control 1
+        // Fetstil (Bold) används för att markera nyckelord (Bold Strategy)
         const controls = [
-            { id: 1, title: "Inventory and Control of Enterprise Assets", title_sv: "Inventering och kontroll av företagets tillgångar", icon: "server" },
+            { 
+                id: 1, 
+                title: "Inventory and Control of Enterprise Assets", 
+                title_sv: "Inventering och kontroll av företagets tillgångar", 
+                icon: "server",
+                // Overview Description
+                description: "Actively <b>manage</b> (inventory, track, and correct) all <b>enterprise assets</b> (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure <b>physically, virtually, remotely</b>, and those within cloud environments, to accurately know the <b>totality of assets</b> that need to be monitored and protected within the enterprise.",
+                description_sv: "Hantera aktivt (<b>inventera, spåra och korrigera</b>) alla <b>företagets tillgångar</b> (slutanvändarenheter, inklusive bärbara och mobila; nätverksenheter; icke-datorbaserade/IoT-enheter; och servrar) som är anslutna till infrastrukturen <b>fysiskt, virtuellt, på distans</b> och i molnmiljöer, för att exakt känna till <b>helheten av tillgångar</b> som behöver övervakas och skyddas inom företaget.",
+                
+                // Why Critical Description
+                why_critical: "Enterprises cannot defend what they do not know they have. Managed control of all enterprise assets also plays a <b>critical role</b> in security monitoring, incident response, system backup, and recovery.",
+                why_critical_sv: "Företag kan inte försvara vad de inte vet att de har. Hanterad kontroll över alla företagstillgångar spelar också en <b>kritisk roll</b> i säkerhetsövervakning, incidenthantering, systemsäkerhetskopiering och återställning.",
+                
+                // Safeguards
+                safeguards: [
+                    {
+                        id: "1.1",
+                        title: "Establish and Maintain Detailed Enterprise Asset Inventory",
+                        title_sv: "Upprätta och underhåll detaljerad inventering av företagstillgångar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain an <b>accurate, detailed, and up-to-date inventory</b> of all enterprise assets with the potential to store or process data, to include: end-user devices, network devices, non-computing/IoT devices, and servers.",
+                        description_sv: "Upprätta och underhåll en <b>exakt, detaljerad och uppdaterad inventering</b> av alla företagstillgångar med potential att lagra eller behandla data, inklusive: slutanvändarenheter, nätverksenheter, IoT-enheter och servrar."
+                    },
+                    {
+                        id: "1.2",
+                        title: "Address Unauthorized Assets",
+                        title_sv: "Hantera obehöriga tillgångar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure that a process exists to <b>address unauthorized assets</b> on a weekly basis. The enterprise may choose to <b>remove</b> the asset from the network, <b>deny</b> the asset from connecting remotely to the network, or <b>quarantine</b> the asset.",
+                        description_sv: "Säkerställ att en process finns för att <b>hantera obehöriga tillgångar</b> varje vecka. Företaget kan välja att <b>ta bort</b> tillgången från nätverket, <b>neka</b> anslutning eller <b>karantänsätta</b> tillgången."
+                    },
+                    {
+                        id: "1.3",
+                        title: "Utilize an Active Discovery Tool",
+                        title_sv: "Använd ett aktivt upptäcktsverktyg",
+                        ig: ["IG2", "IG3"],
+                        description: "Utilize an <b>active discovery tool</b> to identify assets connected to the enterprise's network. Configure the active discovery tool to execute <b>daily</b>, or more frequently.",
+                        description_sv: "Använd ett <b>aktivt upptäcktsverktyg</b> för att identifiera tillgångar anslutna till företagets nätverk. Konfigurera verktyget att köras <b>dagligen</b> eller oftare."
+                    },
+                    {
+                        id: "1.4",
+                        title: "Use DHCP Logging to Update Asset Inventory",
+                        title_sv: "Använd DHCP-loggning för att uppdatera inventering",
+                        ig: ["IG2", "IG3"],
+                        description: "Use <b>DHCP logging</b> on all DHCP servers or Internet Protocol (IP) address management tools to <b>update the enterprise's asset inventory</b>. Review and use logs to update the inventory <b>weekly</b>, or more frequently.",
+                        description_sv: "Använd <b>DHCP-loggning</b> på alla DHCP-servrar eller IP-adresshanteringsverktyg för att <b>uppdatera inventeringen</b>. Granska och använd loggar för uppdatering <b>varje vecka</b> eller oftare."
+                    },
+                    {
+                        id: "1.5",
+                        title: "Use a Passive Asset Discovery Tool",
+                        title_sv: "Använd ett passivt upptäcktsverktyg",
+                        ig: ["IG3"],
+                        description: "Use a <b>passive discovery tool</b> to identify assets connected to the enterprise's network. Review and use scans to update the enterprise's asset inventory at least <b>weekly</b>, or more frequently.",
+                        description_sv: "Använd ett <b>passivt upptäcktsverktyg</b> för att identifiera tillgångar anslutna till företagets nätverk. Granska och använd skanningar för att uppdatera inventeringen minst <b>varje vecka</b>."
+                    }
+                ]
+            },
             { id: 2, title: "Inventory and Control of Software Assets", title_sv: "Inventering och kontroll av programvarutillgångar", icon: "layers" },
             { id: 3, title: "Data Protection", title_sv: "Dataskydd", icon: "database" },
             { id: 4, title: "Secure Configuration of Enterprise Assets and Software", title_sv: "Säker konfiguration av tillgångar och programvara", icon: "lock" },
@@ -154,6 +227,7 @@
         // State
         let activeControlId = null;
         let currentLang = 'en'; // 'en' or 'sv'
+        let activeTab = 'overview'; // 'overview' or 'safeguards'
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
@@ -179,26 +253,68 @@
             currentLang = currentLang === 'en' ? 'sv' : 'en';
             updateLangToggleUI();
             
-            // Trigger wipe effect on all visible titles
-            const titleElements = document.querySelectorAll('.effect-target');
-            titleElements.forEach(el => {
-                // Find data
+            // Uppdatera innehåll
+            // För "Effect Targets" (Titlar/Headers) kör vi Wipe Effect
+            const elements = document.querySelectorAll('.effect-target');
+            elements.forEach(el => {
                 let newText = "";
                 
-                // Check if it is a list item
+                // Hämta ny text beroende på datakälla
                 if (el.dataset.controlId) {
                     const id = parseInt(el.dataset.controlId);
                     const data = controls.find(c => c.id === id);
                     newText = currentLang === 'sv' ? data.title_sv : data.title;
                 } 
-                // Or the main header in detail view
                 else if (el.id === 'detail-title') {
                     const data = controls.find(c => c.id === activeControlId);
                     if(data) newText = currentLang === 'sv' ? data.title_sv : data.title;
                 }
+                // Static headers
+                else if (el.dataset.staticText) {
+                    const key = el.dataset.staticText;
+                    const staticDict = {
+                        'overview': { en: 'OVERVIEW', sv: 'ÖVERSIKT' },
+                        'safeguards': { en: 'SAFEGUARDS', sv: 'ÅTGÄRDER' },
+                        'why_critical': { en: 'WHY IS THIS CRITICAL?', sv: 'VARFÖR ÄR DETTA KRITISKT?' }
+                    };
+                    if (staticDict[key]) {
+                        newText = staticDict[key][currentLang];
+                    }
+                }
+                else if (el.dataset.safeguardTitleIndex) {
+                    const idx = parseInt(el.dataset.safeguardTitleIndex);
+                    const data = controls.find(c => c.id === activeControlId);
+                    if(data && data.safeguards && data.safeguards[idx]) {
+                        newText = currentLang === 'sv' ? data.safeguards[idx].title_sv : data.safeguards[idx].title;
+                    }
+                }
 
-                if (newText) {
+                if (newText && newText !== el.innerText) {
                     runTerminalWipeEffect(el, newText, el.innerText);
+                }
+            });
+
+            // För HTML-innehåll (Beskrivningar med fetstil) byter vi direkt med innerHTML
+            // eftersom Wipe-effekten skulle förstöra HTML-taggarna (<b>).
+            const htmlElements = document.querySelectorAll('.html-target');
+            htmlElements.forEach(el => {
+                let newHtml = "";
+                if (el.dataset.field) {
+                    const data = controls.find(c => c.id === activeControlId);
+                    const fieldName = el.dataset.field;
+                    const targetKey = currentLang === 'sv' ? fieldName + '_sv' : fieldName;
+                    if(data && data[targetKey]) newHtml = data[targetKey];
+                }
+                else if (el.dataset.safeguardDescIndex) {
+                    const idx = parseInt(el.dataset.safeguardDescIndex);
+                    const data = controls.find(c => c.id === activeControlId);
+                    if(data && data.safeguards && data.safeguards[idx]) {
+                        newHtml = currentLang === 'sv' ? data.safeguards[idx].description_sv : data.safeguards[idx].description;
+                    }
+                }
+
+                if(newHtml) {
+                    el.innerHTML = newHtml;
                 }
             });
         }
@@ -216,35 +332,25 @@
             }
         }
 
-        // The Terminal Wipe Effect Logic
+        // The Terminal Wipe Effect Logic (Endast för Plain Text)
         function runTerminalWipeEffect(element, newText, oldText) {
             let i = 0;
-            const cursor = "█"; // Block cursor
-            
-            // Vi använder maxlängden för att avgöra när loopen är klar.
+            const cursor = "█"; 
             const maxLength = Math.max(newText.length, oldText.length);
             
-            // Rensa eventuell pågående animation
             if (element.dataset.intervalId) {
                 clearInterval(parseInt(element.dataset.intervalId));
             }
 
             const interval = setInterval(() => {
-                // Bygg strängen:
-                // Del 1: Den nya texten som skrivits fram hittills
                 const part1 = newText.substring(0, i);
-                
-                // Del 2: Resten av den gamla texten som inte blivit "överskriven" än
-                // Vi börjar från i + 1 för att simulera att markören "äter" ett tecken
                 let part2 = "";
                 if (i < oldText.length) {
                     part2 = oldText.substring(i + 1);
                 }
                 
-                // Sätt ihop: Ny text + Markör + Gammal text
                 let displayString = part1 + cursor + part2;
                 
-                // Om vi nått slutet, ta bort markören
                 if (i >= maxLength) {
                     displayString = newText;
                     clearInterval(interval);
@@ -254,14 +360,33 @@
                 element.innerText = displayString;
                 i++;
                 
-            }, 20); // Hastighet i ms (lägre = snabbare)
+            }, 10); // Hastighet
             
             element.dataset.intervalId = interval;
+        }
+
+        function toggleSafeguard(idx) {
+            const desc = document.getElementById(`safeguard-desc-${idx}`);
+            const chevron = document.getElementById(`chevron-${idx}`);
+            
+            if (desc.classList.contains('hidden')) {
+                desc.classList.remove('hidden');
+                desc.classList.add('block');
+                // Animation logic could go here
+                chevron.style.transform = 'rotate(180deg)';
+                chevron.style.color = '#22d3ee'; // cyan-400 highlight
+            } else {
+                desc.classList.add('hidden');
+                desc.classList.remove('block');
+                chevron.style.transform = 'rotate(0deg)';
+                chevron.style.color = ''; // reset color
+            }
         }
 
         // Navigation Actions
         function navigateToControl(id) {
             activeControlId = id;
+            activeTab = 'overview'; // Reset tab
             window.history.pushState({ controlId: id, view: 'detail' }, '');
             window.scrollTo(0, 0);
             render();
@@ -269,6 +394,11 @@
 
         function navigateBack() {
             window.history.back();
+        }
+        
+        function switchTab(tab) {
+            activeTab = tab;
+            render(); // Re-render detail view with new tab content
         }
 
         // Render Functions
@@ -304,29 +434,24 @@
                                active:scale-[0.98] active:bg-slate-800 active:border-cyan-500/30
                                transition-all duration-200 text-left rounded-lg overflow-hidden touch-manipulation">
                         
-                        <!-- Hover Effect Background -->
                         <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                         
-                        <!-- Icon Container -->
                         <div class="relative flex-shrink-0 self-center">
                             <div class="w-10 h-10 rounded-md bg-slate-950 border border-slate-700/50 flex items-center justify-center group-hover:border-cyan-400/50 transition-all">
                                 <i data-lucide="${control.icon}" class="w-5 h-5 text-slate-400 group-hover:text-cyan-400 transition-colors"></i>
                             </div>
                         </div>
 
-                        <!-- Text Content -->
                         <div class="flex-1 min-w-0 py-1">
                             <div class="text-[10px] font-mono text-cyan-700 mb-0.5 group-hover:text-cyan-400 font-medium">
                                 CIS-${idStr}
                             </div>
-                            <!-- Added min-h-[3.25rem] to enforce height stability -->
                             <h3 class="effect-target text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug break-words min-h-[3.25rem] flex items-center" 
                                 data-control-id="${control.id}">
                                 ${title}
                             </h3>
                         </div>
 
-                        <!-- Chevron Right -->
                         <div class="text-slate-700 group-hover:text-cyan-500 transition-colors self-center">
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </div>
@@ -347,6 +472,100 @@
             
             const idStr = data.id.toString().padStart(2, '0');
             const title = currentLang === 'sv' ? data.title_sv : data.title;
+            const hasData = !!data.description; // Check if we have extended data
+
+            let contentHtml = '';
+
+            if (hasData) {
+                // TABS Logic
+                const tabOverviewClass = activeTab === 'overview' ? 'tab-active' : 'tab-inactive hover:text-slate-300';
+                const tabSafeguardsClass = activeTab === 'safeguards' ? 'tab-active' : 'tab-inactive hover:text-slate-300';
+                
+                const overviewLabel = currentLang === 'sv' ? 'ÖVERSIKT' : 'OVERVIEW';
+                const safeguardsLabel = currentLang === 'sv' ? 'ÅTGÄRDER' : 'SAFEGUARDS';
+                const whyCriticalLabel = currentLang === 'sv' ? 'VARFÖR ÄR DETTA KRITISKT?' : 'WHY IS THIS CRITICAL?';
+                
+                const description = currentLang === 'sv' ? data.description_sv : data.description;
+                const whyCritical = currentLang === 'sv' ? data.why_critical_sv : data.why_critical;
+
+                contentHtml = `
+                    <div class="w-full max-w-2xl mx-auto text-left">
+                        <!-- TABS -->
+                        <div class="flex space-x-6 border-b border-slate-800 mb-6">
+                            <button onclick="switchTab('overview')" class="pb-2 text-xs font-mono font-bold tracking-widest transition-colors ${tabOverviewClass}">
+                                <span class="effect-target" data-static-text="overview">${overviewLabel}</span>
+                            </button>
+                            <button onclick="switchTab('safeguards')" class="pb-2 text-xs font-mono font-bold tracking-widest transition-colors ${tabSafeguardsClass}">
+                                <span class="effect-target" data-static-text="safeguards">${safeguardsLabel}</span>
+                            </button>
+                        </div>
+
+                        <!-- CONTENT AREA -->
+                        <div class="min-h-[300px]">
+                            ${activeTab === 'overview' ? `
+                                <div class="animate-fade-in space-y-8">
+                                    <div>
+                                        <p class="html-target desc-content text-slate-300 leading-relaxed text-sm md:text-base" data-field="description">
+                                            ${description}
+                                        </p>
+                                    </div>
+                                    <div class="p-5 bg-slate-900/50 border-l-2 border-orange-500/50 rounded-r-lg">
+                                        <h4 class="effect-target text-xs font-mono text-orange-400 mb-2 uppercase" data-static-text="why_critical">${whyCriticalLabel}</h4>
+                                        <p class="html-target desc-content text-slate-400 text-sm leading-relaxed italic" data-field="why_critical">
+                                            ${whyCritical}
+                                        </p>
+                                    </div>
+                                </div>
+                            ` : `
+                                <div class="animate-fade-in space-y-4">
+                                    ${data.safeguards.map((sg, idx) => {
+                                        const sgTitle = currentLang === 'sv' ? sg.title_sv : sg.title;
+                                        const sgDesc = currentLang === 'sv' ? sg.description_sv : sg.description;
+                                        
+                                        return `
+                                            <button onclick="toggleSafeguard(${idx})" class="w-full text-left bg-slate-900/40 border border-slate-800 p-4 rounded-lg hover:border-cyan-900/50 transition-all group focus:outline-none">
+                                                <div class="flex justify-between items-start mb-2">
+                                                    <span class="font-mono text-xs text-cyan-600 font-bold">SG-${sg.id}</span>
+                                                    <div class="flex space-x-1">
+                                                        ${sg.ig.map(ig => `<span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${ig}</span>`).join('')}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="flex justify-between items-center">
+                                                    <h4 class="effect-target text-sm font-bold text-orange-400 pr-4" data-safeguard-title-index="${idx}">
+                                                        ${sgTitle}
+                                                    </h4>
+                                                    <i data-lucide="chevron-down" id="chevron-${idx}" class="w-4 h-4 text-slate-500 transition-transform duration-300"></i>
+                                                </div>
+
+                                                <div id="safeguard-desc-${idx}" class="hidden mt-3 pt-3 border-t border-slate-800/50">
+                                                    <p class="html-target desc-content text-xs text-slate-400 leading-relaxed" data-safeguard-desc-index="${idx}">
+                                                        ${sgDesc}
+                                                    </p>
+                                                </div>
+                                            </button>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                `;
+            } else {
+                // OLD "Under Construction" VIEW
+                contentHtml = `
+                    <div class="relative border border-slate-800 bg-slate-900/40 p-6 md:p-12 rounded-2xl flex flex-col items-center justify-center text-center min-h-[40vh] shadow-xl">
+                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
+                         <div class="flex flex-col items-center space-y-3 relative z-10">
+                            <i data-lucide="triangle-alert" class="w-8 h-8 text-amber-500"></i>
+                            <h3 class="text-sm font-mono text-amber-400 uppercase tracking-widest font-bold">
+                                Under Construction
+                            </h3>
+                            <p class="text-[10px] text-amber-500/60 font-mono">DATA INJECTION PENDING...</p>
+                        </div>
+                    </div>
+                `;
+            }
 
             container.innerHTML = `
                 <div class="animate-fade-in pb-10">
@@ -360,40 +579,19 @@
                         <span class="text-xs font-mono text-slate-600">MODUL ${idStr}</span>
                     </div>
 
-                    <div class="relative border border-slate-800 bg-slate-900/40 p-6 md:p-12 rounded-2xl flex flex-col items-center justify-center text-center min-h-[50vh] overflow-hidden shadow-2xl">
-                        <!-- Decorative Elements -->
-                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
-                        <div class="absolute bottom-0 left-0 w-full h-px bg-slate-800"></div>
-                        <div class="absolute top-6 right-6 opacity-10 rotate-12 pointer-events-none">
-                             <i data-lucide="cpu" class="w-32 h-32 text-slate-500"></i>
+                    <!-- Header for Specific Control -->
+                    <div class="mb-8 w-full max-w-2xl mx-auto text-center">
+                        <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-slate-950 border border-slate-800 shadow-inner">
+                            <i data-lucide="${data.icon}" class="w-8 h-8 text-cyan-500"></i>
                         </div>
-                        
-                        <!-- Header for Specific Control -->
-                        <div class="mb-10 relative z-10 w-full max-w-2xl">
-                            <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-slate-950 border border-slate-800 shadow-inner">
-                                <i data-lucide="${data.icon}" class="w-8 h-8 text-cyan-500"></i>
-                            </div>
-                            <!-- Added 'effect-target' and 'id' for effect targeting -->
-                            <h2 id="detail-title" class="effect-target text-2xl md:text-3xl font-bold text-orange-400 mb-4 leading-tight">
-                                ${title}
-                            </h2>
-                            <div class="h-1 w-16 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto rounded-full opacity-60"></div>
-                        </div>
-
-                        <!-- Construction Message -->
-                        <div class="relative z-10 w-full">
-                            <div class="mx-auto p-5 border border-amber-500/20 bg-amber-500/5 rounded-xl max-w-xs w-full animate-pulse-slow backdrop-blur-sm">
-                                <div class="flex flex-col items-center space-y-3">
-                                    <i data-lucide="triangle-alert" class="w-8 h-8 text-amber-500"></i>
-                                    <h3 class="text-sm font-mono text-amber-400 uppercase tracking-widest font-bold">
-                                        Under Construction
-                                    </h3>
-                                    <p class="text-[10px] text-amber-500/60 font-mono">DATA INJECTION PENDING...</p>
-                                </div>
-                            </div>
-                        </div>
-
+                        <h2 id="detail-title" class="effect-target text-2xl md:text-3xl font-bold text-orange-400 mb-2 leading-tight">
+                            ${title}
+                        </h2>
                     </div>
+
+                    <!-- DYNAMIC CONTENT -->
+                    ${contentHtml}
+
                 </div>
             `;
         }
