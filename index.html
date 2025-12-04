@@ -175,6 +175,16 @@
                 }
             ]
         };
+        
+        // Helper function to get badge styles based on IG level
+        function getIGBadgeStyles(ig) {
+            switch(ig) {
+                case 'IG1': return 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_10px_rgba(52,211,153,0.1)]';
+                case 'IG2': return 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_10px_rgba(34,211,238,0.1)]';
+                case 'IG3': return 'text-violet-400 border-violet-500/30 bg-violet-500/10 shadow-[0_0_10px_rgba(167,139,250,0.1)]';
+                default: return 'text-slate-400 border-slate-700 bg-slate-800';
+            }
+        }
 
         // Data med översättningar och detaljerad info
         // Fetstil (Bold) används för att markera nyckelord (Bold Strategy)
@@ -860,7 +870,7 @@
                         title: "Retain Audit Logs",
                         title_sv: "Bevara audit-loggar",
                         ig: ["IG2", "IG3"],
-                        description: "<b>Retain audit logs</b> across enterprise assets for a minimum of <b>90 days</b>.",
+                        description: "<b>Retain audit logs</b> across enterprise assets for a minimum of 90 days.",
                         description_sv: "<b>Bevara audit-loggar</b> över företagstillgångar i minst <b>90 dagar</b>."
                     },
                     {
@@ -1516,7 +1526,7 @@
                         title: "Train Developers in Application Security Concepts and Secure Coding",
                         title_sv: "Utbilda utvecklare i applikationssäkerhet och säker kodning",
                         ig: ["IG2", "IG3"],
-                        description: "Ensure software development personnel receive <b>training in writing secure code</b> for their specific environment. Conduct annually.",
+                        description: "Ensure software development personnel receive <b>training in writing secure code</b> for their specific development environment and responsibilities. Training can include general security principles and application security standard practices. Conduct training at least annually and design in a way to promote security within the development team, and build a culture of security among the developers.",
                         description_sv: "Säkerställ att personal inom mjukvaruutveckling får <b>utbildning i att skriva säker kod</b> för sin specifika miljö. Genomför årligen."
                     },
                     {
@@ -1961,7 +1971,7 @@
                         </div>
 
                         <div class="flex-1 min-w-0 py-0">
-                            <h3 class="effect-target text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug break-words" 
+                            <h3 class="effect-target text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug break-words min-h-[4rem]" 
                                 data-control-id="${control.id}">
                                 ${title}
                             </h3>
@@ -2093,7 +2103,7 @@
                                                 <div class="flex justify-between items-start mb-2">
                                                     <span class="font-mono text-xs text-cyan-600 font-bold">SG-${sg.id}</span>
                                                     <div class="flex space-x-1">
-                                                        ${sg.ig.map(ig => `<span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${ig}</span>`).join('')}
+                                                        ${sg.ig.map(ig => `<span class="text-[9px] px-1.5 py-0.5 rounded border ${getIGBadgeStyles(ig)} font-mono font-bold">${ig}</span>`).join('')}
                                                     </div>
                                                 </div>
                                                 
