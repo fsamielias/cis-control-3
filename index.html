@@ -83,8 +83,8 @@
 
         /* Tab styles */
         .tab-active {
-            border-bottom: 2px solid #22d3ee; /* Cyan-400 */
-            color: #22d3ee;
+            border-bottom: 2px solid #fb923c; /* Orange-400 */
+            color: #fb923c;
         }
         .tab-inactive {
             border-bottom: 2px solid transparent;
@@ -145,23 +145,21 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Data med översättningar och detaljerad info för Control 1
+        // Data med översättningar och detaljerad info
         // Fetstil (Bold) används för att markera nyckelord (Bold Strategy)
         const controls = [
+            // --- CIS CONTROL 1 ---
             { 
                 id: 1, 
                 title: "Inventory and Control of Enterprise Assets", 
                 title_sv: "Inventering och kontroll av företagets tillgångar", 
                 icon: "server",
-                // Overview Description
                 description: "Actively <b>manage</b> (inventory, track, and correct) all <b>enterprise assets</b> (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure <b>physically, virtually, remotely</b>, and those within cloud environments, to accurately know the <b>totality of assets</b> that need to be monitored and protected within the enterprise.",
                 description_sv: "Hantera aktivt (<b>inventera, spåra och korrigera</b>) alla <b>företagets tillgångar</b> (slutanvändarenheter, inklusive bärbara och mobila; nätverksenheter; icke-datorbaserade/IoT-enheter; och servrar) som är anslutna till infrastrukturen <b>fysiskt, virtuellt, på distans</b> och i molnmiljöer, för att exakt känna till <b>helheten av tillgångar</b> som behöver övervakas och skyddas inom företaget.",
                 
-                // Why Critical Description
                 why_critical: "Enterprises cannot defend what they do not know they have. Managed control of all enterprise assets also plays a <b>critical role</b> in security monitoring, incident response, system backup, and recovery.",
                 why_critical_sv: "Företag kan inte försvara vad de inte vet att de har. Hanterad kontroll över alla företagstillgångar spelar också en <b>kritisk roll</b> i säkerhetsövervakning, incidenthantering, systemsäkerhetskopiering och återställning.",
                 
-                // Safeguards
                 safeguards: [
                     {
                         id: "1.1",
@@ -205,23 +203,1479 @@
                     }
                 ]
             },
-            { id: 2, title: "Inventory and Control of Software Assets", title_sv: "Inventering och kontroll av programvarutillgångar", icon: "layers" },
-            { id: 3, title: "Data Protection", title_sv: "Dataskydd", icon: "database" },
-            { id: 4, title: "Secure Configuration of Enterprise Assets and Software", title_sv: "Säker konfiguration av tillgångar och programvara", icon: "lock" },
-            { id: 5, title: "Account Management", title_sv: "Kontohantering", icon: "users" },
-            { id: 6, title: "Access Control Management", title_sv: "Hantering av åtkomstkontroll", icon: "shield" },
-            { id: 7, title: "Continuous Vulnerability Management", title_sv: "Kontinuerlig sårbarhetshantering", icon: "activity" },
-            { id: 8, title: "Audit Log Management", title_sv: "Hantering av audit-loggar", icon: "file-text" },
-            { id: 9, title: "Email and Web Browser Protections", title_sv: "Skydd för e-post och webbläsare", icon: "globe" },
-            { id: 10, title: "Malware Defenses", title_sv: "Skydd mot skadlig kod", icon: "triangle-alert" },
-            { id: 11, title: "Data Recovery", title_sv: "Dataåterställning", icon: "server" },
-            { id: 12, title: "Network Infrastructure Management", title_sv: "Hantering av nätverksinfrastruktur", icon: "wifi" },
-            { id: 13, title: "Network Monitoring and Defense", title_sv: "Nätverksövervakning och försvar", icon: "eye" },
-            { id: 14, title: "Security Awareness and Skills Training", title_sv: "Säkerhetsmedvetenhet och utbildning", icon: "users" },
-            { id: 15, title: "Service Provider Management", title_sv: "Hantering av tjänsteleverantörer", icon: "globe" },
-            { id: 16, title: "Application Software Security", title_sv: "Applikationssäkerhet", icon: "terminal" },
-            { id: 17, title: "Incident Response Management", title_sv: "Hantering av incidentrespons", icon: "activity" },
-            { id: 18, title: "Penetration Testing", title_sv: "Penetrationstester", icon: "shield" }
+            
+            // --- CIS CONTROL 2 ---
+            { 
+                id: 2, 
+                title: "Inventory and Control of Software Assets", 
+                title_sv: "Inventering och kontroll av programvarutillgångar", 
+                icon: "layers",
+                
+                description: "Actively <b>manage</b> (inventory, track, and correct) all <b>software</b> (operating systems and applications) on the network so that only <b>authorized software</b> is installed and can execute, and that <b>unauthorized and unmanaged software</b> is found and prevented from installation or execution.",
+                description_sv: "Hantera aktivt (<b>inventera, spåra och korrigera</b>) all <b>programvara</b> (operativsystem och applikationer) på nätverket så att endast <b>auktoriserad programvara</b> är installerad och kan köras, och att <b>oauktoriserad och ohanterad programvara</b> hittas och förhindras från installation eller körning.",
+                
+                why_critical: "A complete software inventory is a <b>critical foundation</b> for preventing attacks. Attackers continuously scan target enterprises looking for <b>vulnerable versions of software</b> that can be remotely exploited. Management of software assets is also important to identify <b>unnecessary security risks</b>.",
+                why_critical_sv: "En komplett inventering av programvara är en <b>kritisk grund</b> för att förhindra attacker. Angripare skannar kontinuerligt målföretag efter <b>sårbara programvaruversioner</b> som kan utnyttjas på distans. Hantering av programvarutillgångar är också viktigt för att identifiera <b>onödiga säkerhetsrisker</b>.",
+                
+                safeguards: [
+                    {
+                        id: "2.1",
+                        title: "Establish and Maintain a Software Inventory",
+                        title_sv: "Upprätta och underhåll en programvaruinventering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a <b>detailed inventory</b> of all licensed software installed on enterprise assets. The software inventory must document the title, publisher, initial install/use date, and business purpose.",
+                        description_sv: "Upprätta och underhåll en <b>detaljerad inventering</b> av all licensierad programvara installerad på företagstillgångar. Inventeringen måste dokumentera titel, utgivare, installationsdatum och affärssyfte."
+                    },
+                    {
+                        id: "2.2",
+                        title: "Ensure Authorized Software is Currently Supported",
+                        title_sv: "Säkerställ att auktoriserad programvara stöds",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure that only <b>currently supported software</b> is designated as authorized in the software inventory for enterprise assets. If software is unsupported, yet necessary, document an exception detailing <b>mitigating controls</b>.",
+                        description_sv: "Säkerställ att endast <b>nuvarande stödd programvara</b> anges som auktoriserad i inventeringen. Om programvara inte stöds men är nödvändig, dokumentera ett undantag som beskriver <b>mildrande kontroller</b>."
+                    },
+                    {
+                        id: "2.3",
+                        title: "Address Unauthorized Software",
+                        title_sv: "Hantera oauktoriserad programvara",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure that <b>unauthorized software</b> is either <b>removed</b> from use on enterprise assets or receives a documented exception. Review monthly, or more frequently.",
+                        description_sv: "Säkerställ att <b>oauktoriserad programvara</b> antingen <b>tas bort</b> från företagstillgångar eller får ett dokumenterat undantag. Granska varje månad eller oftare."
+                    },
+                    {
+                        id: "2.4",
+                        title: "Utilize Automated Software Inventory Tools",
+                        title_sv: "Använd automatiserade inventeringsverktyg",
+                        ig: ["IG2", "IG3"],
+                        description: "Utilize <b>software inventory tools</b>, when possible, throughout the enterprise to <b>automate the discovery</b> and documentation of installed software.",
+                        description_sv: "Använd <b>verktyg för programvaruinventering</b>, när det är möjligt, i hela företaget för att <b>automatisera upptäckten</b> och dokumentationen av installerad programvara."
+                    },
+                    {
+                        id: "2.5",
+                        title: "Allowlist Authorized Software",
+                        title_sv: "Vitlista auktoriserad programvara",
+                        ig: ["IG2", "IG3"],
+                        description: "Use technical controls, such as <b>application allowlisting</b>, to ensure that only <b>authorized software</b> can execute or be accessed. Reassess bi-annually, or more frequently.",
+                        description_sv: "Använd tekniska kontroller, såsom <b>vitlistning av applikationer</b>, för att säkerställa att endast <b>auktoriserad programvara</b> kan köras eller nås. Utvärdera på nytt två gånger om året eller oftare."
+                    },
+                    {
+                        id: "2.6",
+                        title: "Allowlist Authorized Libraries",
+                        title_sv: "Vitlista auktoriserade bibliotek",
+                        ig: ["IG2", "IG3"],
+                        description: "Use technical controls to ensure that only <b>authorized software libraries</b>, such as specific .dll, .ocx, and .so files, are allowed to load into a system process. <b>Block unauthorized libraries</b>.",
+                        description_sv: "Använd tekniska kontroller för att säkerställa att endast <b>auktoriserade programvarubibliotek</b>, såsom specifika .dll, .ocx och .so-filer, får laddas i en systemprocess. <b>Blockera oauktoriserade bibliotek</b>."
+                    },
+                    {
+                        id: "2.7",
+                        title: "Allowlist Authorized Scripts",
+                        title_sv: "Vitlista auktoriserade skript",
+                        ig: ["IG3"],
+                        description: "Use technical controls, such as <b>digital signatures</b> and version control, to ensure that only <b>authorized scripts</b>, such as specific .ps1 and .py files are allowed to execute.",
+                        description_sv: "Använd tekniska kontroller, såsom <b>digitala signaturer</b> och versionshantering, för att säkerställa att endast <b>auktoriserade skript</b>, såsom specifika .ps1 och .py-filer, tillåts att köras."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 3 ---
+            { 
+                id: 3, 
+                title: "Data Protection", 
+                title_sv: "Dataskydd", 
+                icon: "database",
+                
+                description: "Develop processes and technical controls to <b>identify, classify, securely handle, retain, and dispose</b> of data.",
+                description_sv: "Utveckla processer och tekniska kontroller för att <b>identifiera, klassificera, hantera säkert, bevara och gallra</b> data.",
+                
+                why_critical: "Data is no longer only contained within an enterprise's border; it is in the cloud, on portable devices, and shared with partners. The enterprise's <b>loss of control</b> over protected or sensitive data is a serious and often reportable business impact. <b>Data privacy</b> has become increasingly important.",
+                why_critical_sv: "Data finns inte längre bara inom ett företags gränser; den finns i molnet, på bärbara enheter och delas med partners. Företagets <b>förlust av kontroll</b> över skyddad eller känslig data är en allvarlig affärspåverkan. <b>Dataintegritet</b> har blivit allt viktigare.",
+                
+                safeguards: [
+                    {
+                        id: "3.1",
+                        title: "Establish and Maintain a Data Management Process",
+                        title_sv: "Upprätta och underhåll en datahanteringsprocess",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>data management process</b>. In the process, address <b>data sensitivity, data owner, handling of data, data retention limits, and disposal requirements</b>.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>datahanteringsprocess</b>. Adressera <b>datakänslighet, dataägare, hantering av data, lagringsgränser och krav på gallring</b> i processen."
+                    },
+                    {
+                        id: "3.2",
+                        title: "Establish and Maintain a Data Inventory",
+                        title_sv: "Upprätta och underhåll en datainventering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a <b>data inventory</b> based on the enterprise's data management process. Inventory <b>sensitive data</b>, at a minimum.",
+                        description_sv: "Upprätta och underhåll en <b>datainventering</b> baserad på företagets datahanteringsprocess. Inventera <b>känslig data</b> som ett minimum."
+                    },
+                    {
+                        id: "3.3",
+                        title: "Configure Data Access Control Lists",
+                        title_sv: "Konfigurera åtkomstlistor för data",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Configure <b>data access control lists</b> based on a user's <b>need to know</b>. Apply access permissions to local and remote file systems, databases, and applications.",
+                        description_sv: "Konfigurera <b>åtkomstlistor för data</b> baserat på en användares <b>behov av att veta</b>. Tillämpa åtkomsträttigheter på lokala och fjärranslutna filsystem, databaser och applikationer."
+                    },
+                    {
+                        id: "3.4",
+                        title: "Enforce Data Retention",
+                        title_sv: "Tillämpa datalagring",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Retain data according to the enterprise's documented data management process. Data retention must include both <b>minimum and maximum timelines</b>.",
+                        description_sv: "Bevara data enligt företagets dokumenterade datahanteringsprocess. Datalagring måste inkludera både <b>minsta och högsta tidsgränser</b>."
+                    },
+                    {
+                        id: "3.5",
+                        title: "Securely Dispose of Data",
+                        title_sv: "Säker gallring av data",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Securely dispose of data</b> as outlined in the enterprise's documented data management process. Ensure the disposal process and method are <b>commensurate with the data sensitivity</b>.",
+                        description_sv: "<b>Gallra data säkert</b> enligt företagets dokumenterade datahanteringsprocess. Säkerställ att gallringsprocessen och metoden står i <b>proportion till datans känslighet</b>."
+                    },
+                    {
+                        id: "3.6",
+                        title: "Encrypt Data on End-User Devices",
+                        title_sv: "Kryptera data på slutanvändarenheter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Encrypt data</b> on end-user devices containing sensitive data. Example implementations can include Windows BitLocker, Apple FileVault, Linux dm-crypt.",
+                        description_sv: "<b>Kryptera data</b> på slutanvändarenheter som innehåller känslig data. Exempel på implementationer kan inkludera Windows BitLocker, Apple FileVault, Linux dm-crypt."
+                    },
+                    {
+                        id: "3.7",
+                        title: "Establish and Maintain a Data Classification Scheme",
+                        title_sv: "Upprätta och underhåll ett dataklassificeringsschema",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain an overall <b>data classification scheme</b> for the enterprise. Use labels, such as <b>Sensitive, Confidential, and Public</b>.",
+                        description_sv: "Upprätta och underhåll ett övergripande <b>dataklassificeringsschema</b> för företaget. Använd etiketter som <b>Känslig, Konfidentiell och Offentlig</b>."
+                    },
+                    {
+                        id: "3.8",
+                        title: "Document Data Flows",
+                        title_sv: "Dokumentera dataflöden",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Document data flows</b>. Data flow documentation includes service provider data flows and should be based on the enterprise's data management process.",
+                        description_sv: "<b>Dokumentera dataflöden</b>. Dokumentation av dataflöden inkluderar tjänsteleverantörers dataflöden och bör baseras på företagets datahanteringsprocess."
+                    },
+                    {
+                        id: "3.9",
+                        title: "Encrypt Data on Removable Media",
+                        title_sv: "Kryptera data på flyttbara medier",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Encrypt data</b> on removable media.",
+                        description_sv: "<b>Kryptera data</b> på flyttbara medier."
+                    },
+                    {
+                        id: "3.10",
+                        title: "Encrypt Sensitive Data in Transit",
+                        title_sv: "Kryptera känslig data vid överföring",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Encrypt sensitive data in transit</b>. Example implementations can include Transport Layer Security (TLS) and Open Secure Shell (OpenSSH).",
+                        description_sv: "<b>Kryptera känslig data under överföring</b>. Exempel på implementationer kan inkludera Transport Layer Security (TLS) och Open Secure Shell (OpenSSH)."
+                    },
+                    {
+                        id: "3.11",
+                        title: "Encrypt Sensitive Data at Rest",
+                        title_sv: "Kryptera känslig data vid lagring",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Encrypt sensitive data at rest</b> on servers, applications, and databases. Storage-layer encryption meets the minimum requirement.",
+                        description_sv: "<b>Kryptera känslig data vid lagring</b> på servrar, applikationer och databaser. Kryptering på lagringsnivå uppfyller minimikravet."
+                    },
+                    {
+                        id: "3.12",
+                        title: "Segment Data Processing and Storage Based on Sensitivity",
+                        title_sv: "Segmentera databehandling och lagring",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Segment data processing and storage</b> based on the sensitivity of the data. Do not process sensitive data on enterprise assets intended for lower sensitivity data.",
+                        description_sv: "<b>Segmentera databehandling och lagring</b> baserat på datans känslighet. Behandla inte känslig data på företagstillgångar avsedda för data med lägre känslighet."
+                    },
+                    {
+                        id: "3.13",
+                        title: "Deploy a Data Loss Prevention Solution",
+                        title_sv: "Implementera en lösning för dataförlustskydd (DLP)",
+                        ig: ["IG3"],
+                        description: "Implement an automated tool, such as a host-based <b>Data Loss Prevention (DLP)</b> tool to identify all sensitive data stored, processed, or transmitted.",
+                        description_sv: "Implementera ett automatiserat verktyg, såsom ett värdbaserat <b>DLP-verktyg (Data Loss Prevention)</b>, för att identifiera all känslig data som lagras, behandlas eller överförs."
+                    },
+                    {
+                        id: "3.14",
+                        title: "Log Sensitive Data Access",
+                        title_sv: "Logga åtkomst till känslig data",
+                        ig: ["IG3"],
+                        description: "<b>Log sensitive data access</b>, including modification and disposal.",
+                        description_sv: "<b>Logga åtkomst till känslig data</b>, inklusive ändring och borttagning."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 4 ---
+            { 
+                id: 4, 
+                title: "Secure Configuration of Enterprise Assets and Software", 
+                title_sv: "Säker konfiguration av tillgångar och programvara", 
+                icon: "lock",
+                
+                description: "Establish and maintain the <b>secure configuration</b> of enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/IoT devices; and servers) and <b>software</b> (operating systems and applications).",
+                description_sv: "Etablera och upprätthåll <b>säker konfiguration</b> av företagstillgångar (slutanvändarenheter, inklusive bärbara och mobila; nätverksenheter; IoT-enheter; och servrar) och <b>programvara</b> (operativsystem och applikationer).",
+                
+                why_critical: "Default configurations are normally geared toward <b>ease-of-deployment</b> rather than security. Basic controls, open services, and default accounts can be exploitable. Configuration updates need to be <b>managed and maintained</b> over the life cycle of enterprise assets.",
+                why_critical_sv: "Standardkonfigurationer är normalt inriktade på <b>enkel driftsättning</b> snarare än säkerhet. Grundläggande kontroller, öppna tjänster och standardkonton kan utnyttjas. Konfigurationsuppdateringar måste <b>hanteras och underhållas</b> under livscykeln för företagstillgångar.",
+                
+                safeguards: [
+                    {
+                        id: "4.1",
+                        title: "Establish and Maintain a Secure Configuration Process",
+                        title_sv: "Upprätta och underhåll en säker konfigurationsprocess",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>secure configuration process</b> for enterprise assets and software. Review and update documentation annually.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>säker konfigurationsprocess</b> för företagstillgångar och programvara. Granska och uppdatera dokumentationen årligen."
+                    },
+                    {
+                        id: "4.2",
+                        title: "Establish and Maintain a Secure Configuration Process for Network Infrastructure",
+                        title_sv: "Säker konfigurationsprocess för nätverksinfrastruktur",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>secure configuration process</b> for network devices. Review and update documentation annually.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>säker konfigurationsprocess</b> för nätverksenheter. Granska och uppdatera dokumentationen årligen."
+                    },
+                    {
+                        id: "4.3",
+                        title: "Configure Automatic Session Locking on Enterprise Assets",
+                        title_sv: "Konfigurera automatiskt sessionslås",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Configure <b>automatic session locking</b> on enterprise assets after a defined period of inactivity. Not exceed <b>15 minutes</b> for general OS, and <b>2 minutes</b> for mobile devices.",
+                        description_sv: "Konfigurera <b>automatiskt sessionslås</b> på företagstillgångar efter en definierad period av inaktivitet. Får ej överstiga <b>15 minuter</b> för generella OS, och <b>2 minuter</b> för mobila enheter."
+                    },
+                    {
+                        id: "4.4",
+                        title: "Implement and Manage a Firewall on Servers",
+                        title_sv: "Implementera och hantera brandvägg på servrar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Implement and manage a <b>firewall on servers</b>, where supported. Example implementations include a virtual firewall, operating system firewall, or a third-party firewall agent.",
+                        description_sv: "Implementera och hantera en <b>brandvägg på servrar</b>, där det stöds. Exempel inkluderar virtuell brandvägg, operativsystemets brandvägg eller tredjepartsagent."
+                    },
+                    {
+                        id: "4.5",
+                        title: "Implement and Manage a Firewall on End-User Devices",
+                        title_sv: "Implementera och hantera brandvägg på slutanvändarenheter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Implement and manage a <b>host-based firewall</b> or port-filtering tool on end-user devices, with a <b>default-deny rule</b> that drops all traffic except explicitly allowed.",
+                        description_sv: "Implementera och hantera en <b>värdbaserad brandvägg</b> eller portfiltreringsverktyg på slutanvändarenheter, med en <b>standard-neka-regel</b> som stoppar all trafik utom den uttryckligen tillåtna."
+                    },
+                    {
+                        id: "4.6",
+                        title: "Securely Manage Enterprise Assets and Software",
+                        title_sv: "Säker hantering av företagstillgångar och programvara",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Securely manage</b> enterprise assets and software. Example implementations include managing configuration through version-controlled <b>Infrastructure-as-Code</b> and accessing administrative interfaces over <b>secure network protocols</b> (SSH/HTTPS).",
+                        description_sv: "<b>Hantera säkert</b> företagstillgångar och programvara. Exempel inkluderar konfigurationshantering genom versionskontrollerad <b>Infrastructure-as-Code</b> och åtkomst till administrativa gränssnitt via <b>säkra nätverksprotokoll</b> (SSH/HTTPS)."
+                    },
+                    {
+                        id: "4.7",
+                        title: "Manage Default Accounts on Enterprise Assets and Software",
+                        title_sv: "Hantera standardkonton",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Manage default accounts</b> on enterprise assets and software, such as root, administrator, and other pre-configured vendor accounts. Example: <b>disabling default accounts</b>.",
+                        description_sv: "<b>Hantera standardkonton</b> på företagstillgångar och programvara, såsom root, administratör och andra förkonfigurerade leverantörskonton. Exempel: <b>inaktivera standardkonton</b>."
+                    },
+                    {
+                        id: "4.8",
+                        title: "Uninstall or Disable Unnecessary Services",
+                        title_sv: "Avinstallera eller inaktivera onödiga tjänster",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Uninstall or disable unnecessary services</b> on enterprise assets and software, such as an unused file sharing service, web application module, or service function.",
+                        description_sv: "<b>Avinstallera eller inaktivera onödiga tjänster</b> på företagstillgångar och programvara, såsom oanvända fildelningstjänster, webbapplikationsmoduler eller servicefunktioner."
+                    },
+                    {
+                        id: "4.9",
+                        title: "Configure Trusted DNS Servers on Enterprise Assets",
+                        title_sv: "Konfigurera betrodda DNS-servrar",
+                        ig: ["IG2", "IG3"],
+                        description: "Configure <b>trusted DNS servers</b> on network infrastructure. Example: configuring network devices to use enterprise-controlled DNS servers.",
+                        description_sv: "Konfigurera <b>betrodda DNS-servrar</b> på nätverksinfrastruktur. Exempel: konfigurera nätverksenheter att använda företagskontrollerade DNS-servrar."
+                    },
+                    {
+                        id: "4.10",
+                        title: "Enforce Automatic Device Lockout on Portable End-User Devices",
+                        title_sv: "Tvinga automatisk enhetslåsning på bärbara enheter",
+                        ig: ["IG2", "IG3"],
+                        description: "Enforce <b>automatic device lockout</b> following a predetermined threshold of local failed authentication attempts. Laptops: max <b>20 attempts</b>; Tablets/Smartphones: max <b>10 attempts</b>.",
+                        description_sv: "Tvinga <b>automatisk enhetslåsning</b> efter en förutbestämd gräns för misslyckade inloggningsförsök. Bärbara datorer: max <b>20 försök</b>; Surfplattor/Smartphones: max <b>10 försök</b>."
+                    },
+                    {
+                        id: "4.11",
+                        title: "Enforce Remote Wipe Capability on Portable End-User Devices",
+                        title_sv: "Tvinga fjärraderingskapacitet",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Remotely wipe</b> enterprise data from enterprise-owned portable end-user devices when deemed appropriate such as lost or stolen devices.",
+                        description_sv: "<b>Fjärradera</b> företagsdata från företagsägda bärbara enheter när det anses lämpligt, till exempel vid förlorade eller stulna enheter."
+                    },
+                    {
+                        id: "4.12",
+                        title: "Separate Enterprise Workspaces on Mobile End-User Devices",
+                        title_sv: "Separera företagsarbetsytor på mobila enheter",
+                        ig: ["IG3"],
+                        description: "Ensure <b>separate enterprise workspaces</b> are used on mobile end-user devices. Example: Apple Configuration Profile or Android Work Profile to separate enterprise apps/data from personal.",
+                        description_sv: "Säkerställ att <b>separata företagsarbetsytor</b> används på mobila enheter. Exempel: Apple Configuration Profile eller Android Work Profile för att separera företagsappar/data från personliga."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 5 ---
+            { 
+                id: 5, 
+                title: "Account Management", 
+                title_sv: "Kontohantering", 
+                icon: "users",
+                
+                description: "Use processes and tools to <b>assign and manage authorization</b> to credentials for user accounts, including administrator accounts, as well as service accounts, to enterprise assets and software.",
+                description_sv: "Använd processer och verktyg för att <b>tilldela och hantera behörigheter</b> till autentiseringsuppgifter för användarkonton, inklusive administratörskonton och tjänstekonton, till företagstillgångar och programvara.",
+                
+                why_critical: "It is easier for an external or internal threat actor to gain <b>unauthorized access</b> to enterprise assets or data through using <b>valid user credentials</b> than through 'hacking' the environment. Administrative accounts are a particular target.",
+                why_critical_sv: "Det är enklare för en extern eller intern hotaktör att få <b>oauktoriserad åtkomst</b> till företagstillgångar eller data genom att använda <b>giltiga användaruppgifter</b> än genom att 'hacka' miljön. Administratörskonton är ett särskilt mål.",
+                
+                safeguards: [
+                    {
+                        id: "5.1",
+                        title: "Establish and Maintain an Inventory of Accounts",
+                        title_sv: "Upprätta och underhåll en inventering av konton",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain an <b>inventory of all accounts</b> managed in the enterprise. Validate that all active accounts are <b>authorized</b>, on a recurring schedule at a minimum quarterly.",
+                        description_sv: "Upprätta och underhåll en <b>inventering av alla konton</b> som hanteras i företaget. Validera att alla aktiva konton är <b>auktoriserade</b>, återkommande schemalagt minst kvartalsvis."
+                    },
+                    {
+                        id: "5.2",
+                        title: "Use Unique Passwords",
+                        title_sv: "Använd unika lösenord",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Use <b>unique passwords</b> for all enterprise assets. Best practice: 8-character for MFA accounts, 14-character for non-MFA.",
+                        description_sv: "Använd <b>unika lösenord</b> för alla företagstillgångar. Bästa praxis: 8 tecken för MFA-konton, 14 tecken för icke-MFA."
+                    },
+                    {
+                        id: "5.3",
+                        title: "Disable Dormant Accounts",
+                        title_sv: "Inaktivera inaktiva konton",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Delete or <b>disable any dormant accounts</b> after a period of 45 days of inactivity, where supported.",
+                        description_sv: "Radera eller <b>inaktivera vilande konton</b> efter en period av 45 dagars inaktivitet, där det stöds."
+                    },
+                    {
+                        id: "5.4",
+                        title: "Restrict Administrator Privileges to Dedicated Administrator Accounts",
+                        title_sv: "Begränsa administratörsbehörigheter till dedikerade konton",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Restrict <b>administrator privileges</b> to dedicated administrator accounts on enterprise assets. Conduct general computing activities from the user's <b>primary, non-privileged account</b>.",
+                        description_sv: "Begränsa <b>administratörsbehörigheter</b> till dedikerade administratörskonton på företagstillgångar. Utför allmänna datoraktiviteter från användarens <b>primära, icke-privilegierade konto</b>."
+                    },
+                    {
+                        id: "5.5",
+                        title: "Establish and Maintain an Inventory of Service Accounts",
+                        title_sv: "Upprätta och underhåll inventering av tjänstekonton",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain an <b>inventory of service accounts</b>. Validate that all active accounts are authorized at a minimum <b>quarterly</b>.",
+                        description_sv: "Upprätta och underhåll en <b>inventering av tjänstekonton</b>. Validera att alla aktiva konton är auktoriserade minst <b>kvartalsvis</b>."
+                    },
+                    {
+                        id: "5.6",
+                        title: "Centralize Account Management",
+                        title_sv: "Centralisera kontohantering",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centralize account management</b> through a directory or identity service.",
+                        description_sv: "<b>Centralisera kontohantering</b> genom en katalog- eller identitetstjänst."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 6 ---
+            { 
+                id: 6, 
+                title: "Access Control Management", 
+                title_sv: "Hantering av åtkomstkontroll", 
+                icon: "shield",
+                
+                description: "Use processes and tools to <b>create, assign, manage, and revoke</b> access credentials and privileges for user, administrator, and service accounts for enterprise assets and software.",
+                description_sv: "Använd processer och verktyg för att <b>skapa, tilldela, hantera och återkalla</b> åtkomstuppgifter och behörigheter för användar-, administratörs- och tjänstekonton för företagstillgångar och programvara.",
+                
+                why_critical: "Accounts should only have the <b>minimal authorization</b> needed for the role. Developing consistent access rights and assigning roles to users is a best practice. This minimizes the impact if a user account is compromised.",
+                why_critical_sv: "Konton ska endast ha den <b>minimala behörighet</b> som krävs för rollen. Att utveckla konsekventa åtkomsträttigheter och tilldela roller till användare är bästa praxis. Detta minimerar påverkan om ett användarkonto komprometteras.",
+                
+                safeguards: [
+                    {
+                        id: "6.1",
+                        title: "Establish an Access Granting Process",
+                        title_sv: "Upprätta en process för beviljande av åtkomst",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and follow a documented process for <b>granting access</b> to enterprise assets upon new hire or role change of a user.",
+                        description_sv: "Upprätta och följ en dokumenterad process för att <b>bevilja åtkomst</b> till företagstillgångar vid nyanställning eller rollbyte för en användare."
+                    },
+                    {
+                        id: "6.2",
+                        title: "Establish an Access Revoking Process",
+                        title_sv: "Upprätta en process för återkallande av åtkomst",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and follow a process for <b>revoking access</b> to enterprise assets immediately upon termination, rights revocation, or role change.",
+                        description_sv: "Upprätta och följ en process för att <b>återkalla åtkomst</b> till företagstillgångar omedelbart vid uppsägning, återkallelse av rättigheter eller rollbyte."
+                    },
+                    {
+                        id: "6.3",
+                        title: "Require MFA for Externally-Exposed Applications",
+                        title_sv: "Kräv MFA för externt exponerade applikationer",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Require all <b>externally-exposed</b> enterprise or third-party applications to enforce <b>Multi-Factor Authentication (MFA)</b>.",
+                        description_sv: "Kräv att alla <b>externt exponerade</b> företags- eller tredjepartsapplikationer tillämpar <b>flerfaktorsautentisering (MFA)</b>."
+                    },
+                    {
+                        id: "6.4",
+                        title: "Require MFA for Remote Network Access",
+                        title_sv: "Kräv MFA för fjärråtkomst till nätverk",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Require <b>MFA for remote network access</b>.",
+                        description_sv: "Kräv <b>MFA för fjärråtkomst till nätverk</b>."
+                    },
+                    {
+                        id: "6.5",
+                        title: "Require MFA for Administrative Access",
+                        title_sv: "Kräv MFA för administrativ åtkomst",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Require <b>MFA for all administrative access</b> accounts on all enterprise assets.",
+                        description_sv: "Kräv <b>MFA för alla konton med administrativ åtkomst</b> på alla företagstillgångar."
+                    },
+                    {
+                        id: "6.6",
+                        title: "Establish and Maintain an Inventory of Authentication Systems",
+                        title_sv: "Upprätta och underhåll inventering av autentiseringssystem",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain an <b>inventory</b> of the enterprise's authentication and authorization systems. Review at a minimum <b>annually</b>.",
+                        description_sv: "Upprätta och underhåll en <b>inventering</b> av företagets autentiserings- och auktoriseringssystem. Granska minst <b>årligen</b>."
+                    },
+                    {
+                        id: "6.7",
+                        title: "Centralize Access Control",
+                        title_sv: "Centralisera åtkomstkontroll",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centralize access control</b> for all enterprise assets through a directory service or SSO provider.",
+                        description_sv: "<b>Centralisera åtkomstkontroll</b> för alla företagstillgångar genom en katalogtjänst eller SSO-leverantör."
+                    },
+                    {
+                        id: "6.8",
+                        title: "Define and Maintain Role-Based Access Control",
+                        title_sv: "Definiera och underhåll rollbaserad åtkomstkontroll",
+                        ig: ["IG3"],
+                        description: "Define and maintain <b>role-based access control</b>. Determine access rights necessary for each role. Perform reviews annually.",
+                        description_sv: "Definiera och underhåll <b>rollbaserad åtkomstkontroll</b>. Bestäm nödvändiga åtkomsträttigheter för varje roll. Utför granskningar årligen."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 7 ---
+            { 
+                id: 7, 
+                title: "Continuous Vulnerability Management", 
+                title_sv: "Kontinuerlig sårbarhetshantering", 
+                icon: "activity",
+                
+                description: "Develop a plan to <b>continuously assess and track vulnerabilities</b> on all enterprise assets within the enterprise's infrastructure, in order to remediate, and minimize, the window of opportunity for attackers.",
+                description_sv: "Utveckla en plan för att <b>kontinuerligt bedöma och spåra sårbarheter</b> på alla företagstillgångar inom företagets infrastruktur, för att åtgärda och minimera fönstret för angripare.",
+                
+                why_critical: "Attackers have access to the same information and can often take advantage of vulnerabilities <b>more quickly</b> than an enterprise can remediate. Enterprises that do not assess their infrastructure face a significant likelihood of being compromised.",
+                why_critical_sv: "Angripare har tillgång till samma information och kan ofta utnyttja sårbarheter <b>snabbare</b> än ett företag hinner åtgärda dem. Företag som inte bedömer sin infrastruktur löper stor risk att bli komprometterade.",
+                
+                safeguards: [
+                    {
+                        id: "7.1",
+                        title: "Establish and Maintain a Vulnerability Management Process",
+                        title_sv: "Upprätta och underhåll process för sårbarhetshantering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>vulnerability management process</b> for enterprise assets. Review annually.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>sårbarhetshanteringsprocess</b> för företagstillgångar. Granska årligen."
+                    },
+                    {
+                        id: "7.2",
+                        title: "Establish and Maintain a Remediation Process",
+                        title_sv: "Upprätta och underhåll åtgärdsprocess",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a <b>risk-based remediation strategy</b> documented in a remediation process, with monthly reviews.",
+                        description_sv: "Upprätta och underhåll en <b>riskbaserad åtgärdsstrategi</b> dokumenterad i en åtgärdsprocess, med månatliga granskningar."
+                    },
+                    {
+                        id: "7.3",
+                        title: "Perform Automated Operating System Patch Management",
+                        title_sv: "Utför automatiserad patchhantering av operativsystem",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Perform <b>operating system updates</b> on enterprise assets through automated patch management on a <b>monthly</b>, or more frequent, basis.",
+                        description_sv: "Utför <b>uppdateringar av operativsystem</b> på företagstillgångar genom automatiserad patchhantering <b>månatligen</b> eller oftare."
+                    },
+                    {
+                        id: "7.4",
+                        title: "Perform Automated Application Patch Management",
+                        title_sv: "Utför automatiserad patchhantering av applikationer",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Perform <b>application updates</b> on enterprise assets through automated patch management on a <b>monthly</b>, or more frequent, basis.",
+                        description_sv: "Utför <b>applikationsuppdateringar</b> på företagstillgångar genom automatiserad patchhantering <b>månatligen</b> eller oftare."
+                    },
+                    {
+                        id: "7.5",
+                        title: "Perform Automated Vulnerability Scans of Internal Enterprise Assets",
+                        title_sv: "Utför automatiserade sårbarhetsskanningar av interna tillgångar",
+                        ig: ["IG2", "IG3"],
+                        description: "Perform <b>automated vulnerability scans</b> of internal enterprise assets on a <b>quarterly</b> basis. Conduct both authenticated and unauthenticated scans.",
+                        description_sv: "Utför <b>automatiserade sårbarhetsskanningar</b> av interna företagstillgångar <b>kvartalsvis</b>. Genomför både autentiserade och oautentiserade skanningar."
+                    },
+                    {
+                        id: "7.6",
+                        title: "Perform Automated Vulnerability Scans of Externally-Exposed Assets",
+                        title_sv: "Utför automatiserade sårbarhetsskanningar av externa tillgångar",
+                        ig: ["IG2", "IG3"],
+                        description: "Perform <b>automated vulnerability scans</b> of externally-exposed enterprise assets on a <b>monthly</b> basis.",
+                        description_sv: "Utför <b>automatiserade sårbarhetsskanningar</b> av externt exponerade företagstillgångar <b>månatligen</b>."
+                    },
+                    {
+                        id: "7.7",
+                        title: "Remediate Detected Vulnerabilities",
+                        title_sv: "Åtgärda upptäckta sårbarheter",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Remediate detected vulnerabilities</b> in software through processes and tooling on a monthly basis.",
+                        description_sv: "<b>Åtgärda upptäckta sårbarheter</b> i programvara genom processer och verktyg månatligen."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 8 ---
+            { 
+                id: 8, 
+                title: "Audit Log Management", 
+                title_sv: "Hantering av audit-loggar", 
+                icon: "file-text",
+                
+                description: "<b>Collect, alert, review, and retain</b> audit logs of events that could help detect, understand, or recover from an attack.",
+                description_sv: "<b>Samla in, larma, granska och bevara</b> audit-loggar av händelser som kan hjälpa till att upptäcka, förstå eller återhämta sig från en attack.",
+                
+                why_critical: "Log collection and analysis is critical for detecting malicious activity. Sometimes audit records are the <b>only evidence</b> of a successful attack. Attackers rely on enterprises not analyzing logs to hide their location and activities.",
+                why_critical_sv: "Logginsamling och analys är avgörande för att upptäcka skadlig aktivitet. Ibland är audit-poster det <b>enda beviset</b> på en framgångsrik attack. Angripare förlitar sig på att företag inte analyserar loggar för att dölja sin plats och aktiviteter.",
+                
+                safeguards: [
+                    {
+                        id: "8.1",
+                        title: "Establish and Maintain an Audit Log Management Process",
+                        title_sv: "Upprätta och underhåll process för audit-logghantering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>audit log management process</b>. Address collection, review, and retention.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>process för hantering av audit-loggar</b>. Adressera insamling, granskning och lagring."
+                    },
+                    {
+                        id: "8.2",
+                        title: "Collect Audit Logs",
+                        title_sv: "Samla in audit-loggar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Collect audit logs</b>. Ensure logging has been enabled across enterprise assets.",
+                        description_sv: "<b>Samla in audit-loggar</b>. Säkerställ att loggning har aktiverats över företagstillgångar."
+                    },
+                    {
+                        id: "8.3",
+                        title: "Ensure Adequate Audit Log Storage",
+                        title_sv: "Säkerställ tillräcklig lagring av audit-loggar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure that logging destinations maintain <b>adequate storage</b> to comply with the process.",
+                        description_sv: "Säkerställ att loggningsdestinationer upprätthåller <b>tillräcklig lagring</b> för att följa processen."
+                    },
+                    {
+                        id: "8.4",
+                        title: "Standardize Time Synchronization",
+                        title_sv: "Standardisera tidssynkronisering",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Standardize time synchronization</b>. Configure at least two synchronized time sources across enterprise assets.",
+                        description_sv: "<b>Standardisera tidssynkronisering</b>. Konfigurera minst två synkroniserade tidskällor över företagstillgångar."
+                    },
+                    {
+                        id: "8.5",
+                        title: "Collect Detailed Audit Logs",
+                        title_sv: "Samla in detaljerade audit-loggar",
+                        ig: ["IG2", "IG3"],
+                        description: "Configure <b>detailed audit logging</b> for enterprise assets containing sensitive data. Include event source, date, user, timestamp, source/dest addresses.",
+                        description_sv: "Konfigurera <b>detaljerad audit-loggning</b> för företagstillgångar som innehåller känslig data. Inkludera händelsekälla, datum, användare, tidsstämpel, käll-/destinationsadresser."
+                    },
+                    {
+                        id: "8.6",
+                        title: "Collect DNS Query Audit Logs",
+                        title_sv: "Samla in audit-loggar för DNS-frågor",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Collect DNS query audit logs</b> on enterprise assets, where appropriate.",
+                        description_sv: "<b>Samla in audit-loggar för DNS-frågor</b> på företagstillgångar, där det är lämpligt."
+                    },
+                    {
+                        id: "8.7",
+                        title: "Collect URL Request Audit Logs",
+                        title_sv: "Samla in audit-loggar för URL-förfrågningar",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Collect URL request audit logs</b> on enterprise assets, where appropriate.",
+                        description_sv: "<b>Samla in audit-loggar för URL-förfrågningar</b> på företagstillgångar, där det är lämpligt."
+                    },
+                    {
+                        id: "8.8",
+                        title: "Collect Command-Line Audit Logs",
+                        title_sv: "Samla in audit-loggar för kommandoraden",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Collect command-line audit logs</b>. Example: PowerShell, BASH, and remote administrative terminals.",
+                        description_sv: "<b>Samla in audit-loggar för kommandoraden</b>. Exempel: PowerShell, BASH och fjärradministrativa terminaler."
+                    },
+                    {
+                        id: "8.9",
+                        title: "Centralize Audit Logs",
+                        title_sv: "Centralisera audit-loggar",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centralize audit log collection</b> and retention across enterprise assets.",
+                        description_sv: "<b>Centralisera insamling av audit-loggar</b> och lagring över företagstillgångar."
+                    },
+                    {
+                        id: "8.10",
+                        title: "Retain Audit Logs",
+                        title_sv: "Bevara audit-loggar",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Retain audit logs</b> across enterprise assets for a minimum of <b>90 days</b>.",
+                        description_sv: "<b>Bevara audit-loggar</b> över företagstillgångar i minst <b>90 dagar</b>."
+                    },
+                    {
+                        id: "8.11",
+                        title: "Conduct Audit Log Reviews",
+                        title_sv: "Genomför granskning av audit-loggar",
+                        ig: ["IG2", "IG3"],
+                        description: "Conduct <b>reviews of audit logs</b> to detect anomalies or abnormal events on a <b>weekly</b> basis.",
+                        description_sv: "Genomför <b>granskningar av audit-loggar</b> för att upptäcka anomalier eller onormala händelser <b>varje vecka</b>."
+                    },
+                    {
+                        id: "8.12",
+                        title: "Collect Service Provider Logs",
+                        title_sv: "Samla in loggar från tjänsteleverantörer",
+                        ig: ["IG3"],
+                        description: "<b>Collect service provider logs</b>, where supported. Example: authentication events, data creation/disposal.",
+                        description_sv: "<b>Samla in loggar från tjänsteleverantörer</b>, där det stöds. Exempel: autentiseringshändelser, skapande/borttagning av data."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 9 ---
+            { 
+                id: 9, 
+                title: "Email and Web Browser Protections", 
+                title_sv: "Skydd för e-post och webbläsare", 
+                icon: "globe",
+                
+                description: "Improve protections and detections of threats from <b>email and web vectors</b>, as these are opportunities for attackers to manipulate human behavior.",
+                description_sv: "Förbättra skydd och upptäckt av hot från <b>e-post och webbvektorer</b>, eftersom dessa är möjligheter för angripare att manipulera mänskligt beteende.",
+                
+                why_critical: "Web browsers and email clients are very common points of entry for attackers because of their <b>direct interaction with users</b>. Content can be crafted to entice users into disclosing credentials or downloading malware.",
+                why_critical_sv: "Webbläsare och e-postklienter är mycket vanliga inkörsportar för angripare på grund av deras <b>direkta interaktion med användare</b>. Innehåll kan utformas för att locka användare att avslöja inloggningsuppgifter eller ladda ner skadlig kod.",
+                
+                safeguards: [
+                    {
+                        id: "9.1",
+                        title: "Ensure Use of Only Fully Supported Browsers and Email Clients",
+                        title_sv: "Säkerställ användning av endast fullt stödda webbläsare och e-postklienter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure only <b>fully supported browsers and email clients</b> are allowed to execute. Use only the latest versions.",
+                        description_sv: "Säkerställ att endast <b>fullt stödda webbläsare och e-postklienter</b> tillåts köras. Använd endast de senaste versionerna."
+                    },
+                    {
+                        id: "9.2",
+                        title: "Use DNS Filtering Services",
+                        title_sv: "Använd DNS-filtreringstjänster",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Use <b>DNS filtering services</b> on all end-user devices to block access to known <b>malicious domains</b>.",
+                        description_sv: "Använd <b>DNS-filtreringstjänster</b> på alla slutanvändarenheter för att blockera åtkomst till kända <b>skadliga domäner</b>."
+                    },
+                    {
+                        id: "9.3",
+                        title: "Maintain and Enforce Network-Based URL Filters",
+                        title_sv: "Underhåll och tillämpa nätverksbaserade URL-filter",
+                        ig: ["IG2", "IG3"],
+                        description: "Enforce and update <b>network-based URL filters</b> to limit connecting to potentially malicious websites.",
+                        description_sv: "Tillämpa och uppdatera <b>nätverksbaserade URL-filter</b> för att begränsa anslutning till potentiellt skadliga webbplatser."
+                    },
+                    {
+                        id: "9.4",
+                        title: "Restrict Unnecessary or Unauthorized Browser and Email Client Extensions",
+                        title_sv: "Begränsa onödiga eller oauktoriserade tillägg",
+                        ig: ["IG2", "IG3"],
+                        description: "Restrict, either through uninstalling or disabling, any <b>unauthorized or unnecessary</b> browser or email client plugins/extensions.",
+                        description_sv: "Begränsa, antingen genom avinstallation eller inaktivering, alla <b>oauktoriserade eller onödiga</b> plugins/tillägg i webbläsare eller e-postklienter."
+                    },
+                    {
+                        id: "9.5",
+                        title: "Implement DMARC",
+                        title_sv: "Implementera DMARC",
+                        ig: ["IG2", "IG3"],
+                        description: "To lower the chance of spoofed emails, implement <b>DMARC policy and verification</b> (SPF/DKIM).",
+                        description_sv: "För att minska risken för förfalskade e-postmeddelanden, implementera <b>DMARC-policy och verifiering</b> (SPF/DKIM)."
+                    },
+                    {
+                        id: "9.6",
+                        title: "Block Unnecessary File Types",
+                        title_sv: "Blockera onödiga filtyper",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Block unnecessary file types</b> attempting to enter the enterprise's email gateway.",
+                        description_sv: "<b>Blockera onödiga filtyper</b> som försöker komma in via företagets e-postgateway."
+                    },
+                    {
+                        id: "9.7",
+                        title: "Deploy and Maintain Email Server Anti-Malware Protections",
+                        title_sv: "Distribuera skydd mot skadlig kod på e-postserver",
+                        ig: ["IG3"],
+                        description: "Deploy <b>email server anti-malware protections</b>, such as attachment scanning and/or sandboxing.",
+                        description_sv: "Distribuera <b>skydd mot skadlig kod på e-postservern</b>, såsom bilageskanning och/eller sandlådeteknik."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 10 ---
+            { 
+                id: 10, 
+                title: "Malware Defenses", 
+                title_sv: "Skydd mot skadlig kod", 
+                icon: "triangle-alert",
+                
+                description: "<b>Prevent or control</b> the installation, spread, and execution of malicious applications, code, or scripts on enterprise assets.",
+                description_sv: "<b>Förhindra eller kontrollera</b> installation, spridning och körning av skadliga applikationer, kod eller skript på företagstillgångar.",
+                
+                why_critical: "Malicious software is a dangerous aspect of internet threats. Malware enters through vulnerabilities, email, web, or insecure user behavior. Modern malware is designed to <b>avoid, deceive, or disable defenses</b>.",
+                why_critical_sv: "Skadlig programvara är en farlig del av internethot. Skadlig kod kommer in via sårbarheter, e-post, webben eller osäkert användarbeteende. Modern skadlig kod är utformad för att <b>undvika, lura eller inaktivera försvar</b>.",
+                
+                safeguards: [
+                    {
+                        id: "10.1",
+                        title: "Deploy and Maintain Anti-Malware Software",
+                        title_sv: "Distribuera och underhåll programvara mot skadlig kod",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Deploy and maintain <b>anti-malware software</b> on all enterprise assets.",
+                        description_sv: "Distribuera och underhåll <b>programvara mot skadlig kod</b> på alla företagstillgångar."
+                    },
+                    {
+                        id: "10.2",
+                        title: "Configure Automatic Anti-Malware Signature Updates",
+                        title_sv: "Konfigurera automatiska uppdateringar av signaturer",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Configure <b>automatic updates</b> for anti-malware signature files on all enterprise assets.",
+                        description_sv: "Konfigurera <b>automatiska uppdateringar</b> för signaturfiler mot skadlig kod på alla företagstillgångar."
+                    },
+                    {
+                        id: "10.3",
+                        title: "Disable Autorun and Autoplay for Removable Media",
+                        title_sv: "Inaktivera Autorun och Autoplay för flyttbara medier",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Disable autorun and autoplay</b> auto-execute functionality for removable media.",
+                        description_sv: "<b>Inaktivera funktionen för automatisk körning (autorun/autoplay)</b> för flyttbara medier."
+                    },
+                    {
+                        id: "10.4",
+                        title: "Configure Automatic Anti-Malware Scanning of Removable Media",
+                        title_sv: "Konfigurera automatisk skanning av flyttbara medier",
+                        ig: ["IG2", "IG3"],
+                        description: "Configure anti-malware software to <b>automatically scan removable media</b>.",
+                        description_sv: "Konfigurera programvara mot skadlig kod att <b>automatiskt skanna flyttbara medier</b>."
+                    },
+                    {
+                        id: "10.5",
+                        title: "Enable Anti-Exploitation Features",
+                        title_sv: "Aktivera funktioner mot exploatering",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Enable anti-exploitation features</b> on enterprise assets, e.g., DEP, ASLR.",
+                        description_sv: "<b>Aktivera funktioner mot exploatering</b> på företagstillgångar, t.ex. DEP, ASLR."
+                    },
+                    {
+                        id: "10.6",
+                        title: "Centrally Manage Anti-Malware Software",
+                        title_sv: "Centralisera hantering av programvara mot skadlig kod",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centrally manage</b> anti-malware software.",
+                        description_sv: "<b>Centralisera hanteringen</b> av programvara mot skadlig kod."
+                    },
+                    {
+                        id: "10.7",
+                        title: "Use Behavior-Based Anti-Malware Software",
+                        title_sv: "Använd beteendebaserad programvara mot skadlig kod",
+                        ig: ["IG2", "IG3"],
+                        description: "Use <b>behavior-based anti-malware</b> software.",
+                        description_sv: "Använd <b>beteendebaserad programvara mot skadlig kod</b>."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 11 ---
+            { 
+                id: 11, 
+                title: "Data Recovery", 
+                title_sv: "Dataåterställning", 
+                icon: "server",
+                
+                description: "Establish and maintain <b>data recovery practices</b> sufficient to restore in-scope enterprise assets to a <b>pre-incident and trusted state</b>.",
+                description_sv: "Upprätta och underhåll <b>rutiner för dataåterställning</b> som är tillräckliga för att återställa företagets tillgångar till ett <b>pålitligt tillstånd före incidenten</b>.",
+                
+                why_critical: "In the cybersecurity triad (Confidentiality, Integrity, and Availability), the <b>availability of data</b> is critical. With the rise of <b>ransomware</b>, having recent backups to recover to a known, trusted state is essential for business continuity.",
+                why_critical_sv: "Inom cybersäkerhetstriaden (Konfidentialitet, Integritet och Tillgänglighet) är <b>tillgängligheten av data</b> avgörande. Med ökningen av <b>ransomware</b> är det viktigt att ha nya säkerhetskopior för att kunna återställa till ett känt, pålitligt tillstånd för att säkra verksamhetens kontinuitet.",
+                
+                safeguards: [
+                    {
+                        id: "11.1",
+                        title: "Establish and Maintain a Data Recovery Process",
+                        title_sv: "Upprätta och underhåll en process för dataåterställning",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>data recovery process</b>. Address scope, recovery prioritization, and security of backup data. Review annually.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>process för dataåterställning</b>. Adressera omfattning, prioritering av återställning och säkerhet för säkerhetskopior. Granska årligen."
+                    },
+                    {
+                        id: "11.2",
+                        title: "Perform Automated Backups",
+                        title_sv: "Utför automatiserad säkerhetskopiering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Perform <b>automated backups</b> of in-scope enterprise assets. Run backups <b>weekly</b>, or more frequently.",
+                        description_sv: "Utför <b>automatiserad säkerhetskopiering</b> av omfattade företagstillgångar. Kör säkerhetskopiering <b>varje vecka</b>, eller oftare."
+                    },
+                    {
+                        id: "11.3",
+                        title: "Protect Recovery Data",
+                        title_sv: "Skydda återställningsdata",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "<b>Protect recovery data</b> with equivalent controls to the original data. Reference encryption or data separation.",
+                        description_sv: "<b>Skydda återställningsdata</b> med likvärdiga kontroller som originaldata. Referera till kryptering eller dataseparering."
+                    },
+                    {
+                        id: "11.4",
+                        title: "Establish and Maintain an Isolated Instance of Recovery Data",
+                        title_sv: "Upprätta och underhåll en isolerad instans av återställningsdata",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain an <b>isolated instance of recovery data</b>. Example: offline, cloud, or off-site systems.",
+                        description_sv: "Upprätta och underhåll en <b>isolerad instans av återställningsdata</b>. Exempel: offline, moln eller system utanför anläggningen."
+                    },
+                    {
+                        id: "11.5",
+                        title: "Test Data Recovery",
+                        title_sv: "Testa dataåterställning",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Test backup recovery</b> quarterly, or more frequently, for a sampling of in-scope enterprise assets.",
+                        description_sv: "<b>Testa återställning av säkerhetskopior</b> kvartalsvis, eller oftare, för ett urval av omfattade företagstillgångar."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 12 ---
+            { 
+                id: 12, 
+                title: "Network Infrastructure Management", 
+                title_sv: "Hantering av nätverksinfrastruktur", 
+                icon: "wifi",
+                
+                description: "Establish, implement, and actively manage (track, report, correct) <b>network devices</b>, in order to prevent attackers from exploiting vulnerable network services and access points.",
+                description_sv: "Etablera, implementera och hantera aktivt (spåra, rapportera, korrigera) <b>nätverksenheter</b>, för att förhindra angripare från att utnyttja sårbara nätverkstjänster och åtkomstpunkter.",
+                
+                why_critical: "Secure network infrastructure is an essential defense. Default configurations for network devices are often geared for <b>ease-of-deployment</b> not security. Attackers search for <b>vulnerable default settings</b>, gaps in firewall rule sets, and exploit flaws in these devices.",
+                why_critical_sv: "Säker nätverksinfrastruktur är ett viktigt försvar. Standardkonfigurationer för nätverksenheter är ofta inriktade på <b>enkel driftsättning</b> inte säkerhet. Angripare letar efter <b>sårbara standardinställningar</b>, luckor i brandväggsregler och utnyttjar brister i dessa enheter.",
+                
+                safeguards: [
+                    {
+                        id: "12.1",
+                        title: "Ensure Network Infrastructure is Up-to-Date",
+                        title_sv: "Säkerställ att nätverksinfrastrukturen är uppdaterad",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Ensure network infrastructure is <b>kept up-to-date</b>. Run the latest stable release of software. Review monthly.",
+                        description_sv: "Säkerställ att nätverksinfrastrukturen <b>hålls uppdaterad</b>. Kör den senaste stabila versionen av programvaran. Granska varje månad."
+                    },
+                    {
+                        id: "12.2",
+                        title: "Establish and Maintain a Secure Network Architecture",
+                        title_sv: "Upprätta och underhåll en säker nätverksarkitektur",
+                        ig: ["IG2", "IG3"],
+                        description: "Design and maintain a <b>secure network architecture</b>. Address segmentation, least privilege, and availability.",
+                        description_sv: "Designa och underhåll en <b>säker nätverksarkitektur</b>. Adressera segmentering, minsta privilegium och tillgänglighet."
+                    },
+                    {
+                        id: "12.3",
+                        title: "Securely Manage Network Infrastructure",
+                        title_sv: "Säker hantering av nätverksinfrastruktur",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Securely manage</b> network infrastructure. Use version-controlled-infrastructure-as-code and secure network protocols (SSH/HTTPS).",
+                        description_sv: "<b>Hantera nätverksinfrastruktur säkert</b>. Använd versionskontrollerad infrastruktur-som-kod och säkra nätverksprotokoll (SSH/HTTPS)."
+                    },
+                    {
+                        id: "12.4",
+                        title: "Establish and Maintain Architecture Diagram(s)",
+                        title_sv: "Upprätta och underhåll arkitekturdiagram",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain <b>architecture diagram(s)</b> and other network system documentation. Review annually.",
+                        description_sv: "Upprätta och underhåll <b>arkitekturdiagram</b> och annan dokumentation av nätverkssystem. Granska årligen."
+                    },
+                    {
+                        id: "12.5",
+                        title: "Centralize Network Authentication, Authorization, and Auditing (AAA)",
+                        title_sv: "Centralisera nätverkets AAA",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centralize network AAA</b> (Authentication, Authorization, and Auditing).",
+                        description_sv: "<b>Centralisera nätverkets AAA</b> (Autentisering, Auktorisering och Revision)."
+                    },
+                    {
+                        id: "12.6",
+                        title: "Use of Secure Network Management and Communication Protocols",
+                        title_sv: "Användning av säkra protokoll för nätverkshantering",
+                        ig: ["IG2", "IG3"],
+                        description: "Use <b>secure network management</b> and communication protocols (e.g., 802.1X, WPA2 Enterprise or greater).",
+                        description_sv: "Använd <b>säker nätverkshantering</b> och kommunikationsprotokoll (t.ex. 802.1X, WPA2 Enterprise eller högre)."
+                    },
+                    {
+                        id: "12.7",
+                        title: "Ensure Remote Devices Utilize a VPN and are Connecting to an Enterprise's AAA Infrastructure",
+                        title_sv: "Säkerställ att fjärrenheter använder VPN och ansluter till AAA",
+                        ig: ["IG2", "IG3"],
+                        description: "Require users to authenticate to enterprise-managed <b>VPN and authentication services</b> prior to accessing enterprise resources.",
+                        description_sv: "Kräv att användare autentiserar sig mot företagshanterade <b>VPN- och autentiseringstjänster</b> innan de får åtkomst till företagsresurser."
+                    },
+                    {
+                        id: "12.8",
+                        title: "Establish and Maintain Dedicated Computing Resources for All Administrative Work",
+                        title_sv: "Upprätta dedikerade resurser för administrativt arbete",
+                        ig: ["IG3"],
+                        description: "Establish and maintain <b>dedicated computing resources</b> for all administrative tasks. Segment from the primary network and <b>no internet access</b>.",
+                        description_sv: "Upprätta och underhåll <b>dedikerade datorresurser</b> för alla administrativa uppgifter. Segmentera från det primära nätverket och ha <b>ingen internetåtkomst</b>."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 13 ---
+            { 
+                id: 13, 
+                title: "Network Monitoring and Defense", 
+                title_sv: "Nätverksövervakning och försvar", 
+                icon: "eye",
+                
+                description: "Operate processes and tooling to establish and maintain <b>comprehensive network monitoring and defense</b> against security threats across the enterprise's network infrastructure and user base.",
+                description_sv: "Driv processer och verktyg för att upprätta och underhålla <b>omfattande nätverksövervakning och försvar</b> mot säkerhetshot över företagets nätverksinfrastruktur och användarbas.",
+                
+                why_critical: "We cannot rely on network defenses to be perfect. Security tools can only be effective if they support a process of <b>continuous monitoring</b>. Identifying and responding to threats requires visibility into all threat vectors.",
+                why_critical_sv: "Vi kan inte lita på att nätverksförsvar är perfekta. Säkerhetsverktyg kan bara vara effektiva om de stöder en process av <b>kontinuerlig övervakning</b>. Att identifiera och svara på hot kräver synlighet i alla hotvektorer.",
+                
+                safeguards: [
+                    {
+                        id: "13.1",
+                        title: "Centralize Security Event Alerting",
+                        title_sv: "Centralisera larm för säkerhetshändelser",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Centralize security event alerting</b> across enterprise assets for log correlation and analysis. Best practice: use a SIEM.",
+                        description_sv: "<b>Centralisera larm för säkerhetshändelser</b> över företagstillgångar för loggkorrelering och analys. Bästa praxis: använd en SIEM."
+                    },
+                    {
+                        id: "13.2",
+                        title: "Deploy a Host-Based Intrusion Detection Solution",
+                        title_sv: "Distribuera värdbaserad intrångsdetektering (HIDS)",
+                        ig: ["IG2", "IG3"],
+                        description: "Deploy a <b>host-based intrusion detection solution</b> on enterprise assets, where appropriate.",
+                        description_sv: "Distribuera en lösning för <b>värdbaserad intrångsdetektering</b> på företagstillgångar, där det är lämpligt."
+                    },
+                    {
+                        id: "13.3",
+                        title: "Deploy a Network Intrusion Detection Solution",
+                        title_sv: "Distribuera nätverksbaserad intrångsdetektering (NIDS)",
+                        ig: ["IG2", "IG3"],
+                        description: "Deploy a <b>network intrusion detection solution</b> on enterprise assets, where appropriate. Example: NIDS or CSP service.",
+                        description_sv: "Distribuera en lösning för <b>nätverksbaserad intrångsdetektering</b> på företagstillgångar, där det är lämpligt. Exempel: NIDS eller molntjänst."
+                    },
+                    {
+                        id: "13.4",
+                        title: "Perform Traffic Filtering Between Network Segments",
+                        title_sv: "Utför trafikfiltrering mellan nätverkssegment",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Perform traffic filtering</b> between network segments, where appropriate.",
+                        description_sv: "<b>Utför trafikfiltrering</b> mellan nätverkssegment, där det är lämpligt."
+                    },
+                    {
+                        id: "13.5",
+                        title: "Manage Access Control for Remote Assets",
+                        title_sv: "Hantera åtkomstkontroll för fjärrtillgångar",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Manage access control</b> for assets remotely connecting to enterprise resources. Check anti-malware and patch status.",
+                        description_sv: "<b>Hantera åtkomstkontroll</b> för tillgångar som ansluter till företagsresurser på distans. Kontrollera status för anti-malware och patchar."
+                    },
+                    {
+                        id: "13.6",
+                        title: "Collect Network Traffic Flow Logs",
+                        title_sv: "Samla in loggar för nätverkstrafikflöden",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Collect network traffic flow logs</b> and/or network traffic to review and alert upon from network devices.",
+                        description_sv: "<b>Samla in loggar för nätverkstrafikflöden</b> och/eller nätverkstrafik att granska och larma på från nätverksenheter."
+                    },
+                    {
+                        id: "13.7",
+                        title: "Deploy a Host-Based Intrusion Prevention Solution",
+                        title_sv: "Distribuera värdbaserat intrångsskydd (HIPS)",
+                        ig: ["IG3"],
+                        description: "Deploy a <b>host-based intrusion prevention solution</b> on enterprise assets. Example: EDR client or IPS agent.",
+                        description_sv: "Distribuera en lösning för <b>värdbaserat intrångsskydd</b> på företagstillgångar. Exempel: EDR-klient eller IPS-agent."
+                    },
+                    {
+                        id: "13.8",
+                        title: "Deploy a Network Intrusion Prevention Solution",
+                        title_sv: "Distribuera nätverksbaserat intrångsskydd (NIPS)",
+                        ig: ["IG3"],
+                        description: "Deploy a <b>network intrusion prevention solution</b>, where appropriate. Example: NIPS or CSP service.",
+                        description_sv: "Distribuera en lösning för <b>nätverksbaserat intrångsskydd</b>, där det är lämpligt. Exempel: NIPS eller molntjänst."
+                    },
+                    {
+                        id: "13.9",
+                        title: "Deploy Port-Level Access Control",
+                        title_sv: "Distribuera åtkomstkontroll på portnivå",
+                        ig: ["IG3"],
+                        description: "Deploy <b>port-level access control</b>. Utilizes 802.1x or similar protocols, such as certificates.",
+                        description_sv: "Distribuera <b>åtkomstkontroll på portnivå</b>. Använder 802.1x eller liknande protokoll, såsom certifikat."
+                    },
+                    {
+                        id: "13.10",
+                        title: "Perform Application Layer Filtering",
+                        title_sv: "Utför filtrering på applikationslagret",
+                        ig: ["IG3"],
+                        description: "<b>Perform application layer filtering</b>. Example: filtering proxy, application layer firewall, or gateway.",
+                        description_sv: "<b>Utför filtrering på applikationslagret</b>. Exempel: filtrerande proxy, applikationsbrandvägg eller gateway."
+                    },
+                    {
+                        id: "13.11",
+                        title: "Tune Security Event Alerting Thresholds",
+                        title_sv: "Justera tröskelvärden för larm",
+                        ig: ["IG3"],
+                        description: "<b>Tune security event alerting thresholds</b> monthly, or more frequently.",
+                        description_sv: "<b>Justera tröskelvärden för säkerhetslarm</b> månatligen eller oftare."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 14 ---
+            { 
+                id: 14, 
+                title: "Security Awareness and Skills Training", 
+                title_sv: "Säkerhetsmedvetenhet och utbildning", 
+                icon: "users",
+                
+                description: "Establish and maintain a <b>security awareness program</b> to influence behavior among the workforce to be security conscious and properly skilled to reduce cybersecurity risks to the enterprise.",
+                description_sv: "Upprätta och underhåll ett <b>program för säkerhetsmedvetenhet</b> för att påverka beteendet hos personalen så att de blir säkerhetsmedvetna och har rätt kompetens för att minska cyberriskerna för företaget.",
+                
+                why_critical: "The actions of people play a critical part in the success or failure of an enterprise's security program. It is easier for an attacker to <b>entice a user</b> to click a link than to find a network exploit.",
+                why_critical_sv: "Människors handlingar spelar en avgörande roll för framgången eller misslyckandet i ett företags säkerhetsprogram. Det är lättare för en angripare att <b>locka en användare</b> att klicka på en länk än att hitta ett nätverksexploit.",
+                
+                safeguards: [
+                    {
+                        id: "14.1",
+                        title: "Establish and Maintain a Security Awareness Program",
+                        title_sv: "Upprätta och underhåll program för säkerhetsmedvetenhet",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a <b>security awareness program</b>. Educate the workforce on how to interact with assets and data securely. Conduct training at least <b>annually</b>.",
+                        description_sv: "Upprätta och underhåll ett <b>program för säkerhetsmedvetenhet</b>. Utbilda personalen i hur man interagerar med tillgångar och data på ett säkert sätt. Genomför utbildning minst <b>årligen</b>."
+                    },
+                    {
+                        id: "14.2",
+                        title: "Train Workforce Members to Recognize Social Engineering Attacks",
+                        title_sv: "Utbilda personalen att känna igen social engineering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members to <b>recognize social engineering attacks</b>, such as phishing, BEC, pretexting, and tailgating.",
+                        description_sv: "Utbilda personalen att <b>känna igen social engineering-attacker</b>, såsom phishing, BEC, pretexting och tailgating."
+                    },
+                    {
+                        id: "14.3",
+                        title: "Train Workforce Members on Authentication Best Practices",
+                        title_sv: "Utbilda personalen i bästa praxis för autentisering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members on <b>authentication best practices</b>. Example: MFA, password composition, and credential management.",
+                        description_sv: "Utbilda personalen i <b>bästa praxis för autentisering</b>. Exempel: MFA, lösenordssammansättning och hantering av inloggningsuppgifter."
+                    },
+                    {
+                        id: "14.4",
+                        title: "Train Workforce on Data Handling Best Practices",
+                        title_sv: "Utbilda personalen i bästa praxis för datahantering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members on how to <b>identify, store, transfer, archive, and destroy</b> sensitive data. Includes clear screen/desk best practices.",
+                        description_sv: "Utbilda personalen i hur man <b>identifierar, lagrar, överför, arkiverar och förstör</b> känslig data. Inkluderar principer för rent skrivbord/skärm."
+                    },
+                    {
+                        id: "14.5",
+                        title: "Train Workforce Members on Causes of Unintentional Data Exposure",
+                        title_sv: "Utbilda personalen om orsaker till oavsiktlig dataexponering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members to be aware of causes for <b>unintentional data exposure</b>. Example: mis-delivery of sensitive data, losing a device.",
+                        description_sv: "Utbilda personalen att vara medvetna om orsaker till <b>oavsiktlig dataexponering</b>. Exempel: felleverans av känslig data, förlust av enhet."
+                    },
+                    {
+                        id: "14.6",
+                        title: "Train Workforce Members on Recognizing and Reporting Security Incidents",
+                        title_sv: "Utbilda personalen att känna igen och rapportera incidenter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members to be able to <b>recognize a potential incident</b> and be able to <b>report</b> such an incident.",
+                        description_sv: "Utbilda personalen att kunna <b>känna igen en potentiell incident</b> och att kunna <b>rapportera</b> en sådan incident."
+                    },
+                    {
+                        id: "14.7",
+                        title: "Train Workforce on How to Identify and Report Missing Security Updates",
+                        title_sv: "Utbilda personalen att identifiera och rapportera saknade uppdateringar",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce to understand how to <b>verify and report out-of-date software patches</b> or any failures in automated processes.",
+                        description_sv: "Utbilda personalen att förstå hur man <b>verifierar och rapporterar föråldrade programvarupatchar</b> eller fel i automatiserade processer."
+                    },
+                    {
+                        id: "14.8",
+                        title: "Train Workforce on the Dangers of Connecting to Insecure Networks",
+                        title_sv: "Utbilda personalen om farorna med osäkra nätverk",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Train workforce members on the <b>dangers of connecting to insecure networks</b>. Includes guidance for remote workers home network configuration.",
+                        description_sv: "Utbilda personalen om <b>farorna med att ansluta till osäkra nätverk</b>. Inkluderar vägledning för distansarbetares konfiguration av hemnätverk."
+                    },
+                    {
+                        id: "14.9",
+                        title: "Conduct Role-Specific Security Awareness and Skills Training",
+                        title_sv: "Genomför rollspecifik säkerhetsutbildning",
+                        ig: ["IG2", "IG3"],
+                        description: "Conduct <b>role-specific security awareness</b> and skills training. Example: secure coding for developers, sysadmin training.",
+                        description_sv: "Genomför <b>rollspecifik säkerhetsmedvetenhet</b> och färdighetsutbildning. Exempel: säker kodning för utvecklare, utbildning för systemadministratörer."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 15 ---
+            { 
+                id: 15, 
+                title: "Service Provider Management", 
+                title_sv: "Hantering av tjänsteleverantörer", 
+                icon: "globe",
+                
+                description: "Develop a process to <b>evaluate service providers</b> who hold sensitive data, or are responsible for an enterprise's critical IT platforms or processes, to ensure these providers are <b>protecting those platforms and data appropriately</b>.",
+                description_sv: "Utveckla en process för att <b>utvärdera tjänsteleverantörer</b> som innehar känslig data, eller ansvarar för företagets kritiska IT-plattformar eller processer, för att säkerställa att dessa leverantörer <b>skyddar dessa plattformar och data på lämpligt sätt</b>.",
+                
+                why_critical: "In our modern, connected world, enterprises rely on vendors and partners. Third-party breaches have significantly impacted enterprises. Most data security and privacy regulations require their protection <b>extend to service providers</b>.",
+                why_critical_sv: "I vår moderna, uppkopplade värld förlitar sig företag på leverantörer och partners. Intrång hos tredje part har haft betydande påverkan på företag. De flesta datasäkerhets- och integritetsregler kräver att skyddet <b>utvidgas till tjänsteleverantörer</b>.",
+                
+                safeguards: [
+                    {
+                        id: "15.1",
+                        title: "Establish and Maintain an Inventory of Service Providers",
+                        title_sv: "Upprätta och underhåll en förteckning över tjänsteleverantörer",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain an <b>inventory of service providers</b>. List all known providers, include classification, and designate an enterprise contact.",
+                        description_sv: "Upprätta och underhåll en <b>förteckning över tjänsteleverantörer</b>. Lista alla kända leverantörer, inkludera klassificering och utse en kontaktperson på företaget."
+                    },
+                    {
+                        id: "15.2",
+                        title: "Establish and Maintain a Service Provider Management Policy",
+                        title_sv: "Upprätta och underhåll en policy för hantering av tjänsteleverantörer",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain a <b>service provider management policy</b>. Address classification, inventory, assessment, monitoring, and decommissioning.",
+                        description_sv: "Upprätta och underhåll en <b>policy för hantering av tjänsteleverantörer</b>. Adressera klassificering, inventering, bedömning, övervakning och avveckling."
+                    },
+                    {
+                        id: "15.3",
+                        title: "Classify Service Providers",
+                        title_sv: "Klassificera tjänsteleverantörer",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Classify service providers</b>. Consideration may include data sensitivity, data volume, availability requirements, and inherent risk.",
+                        description_sv: "<b>Klassificera tjänsteleverantörer</b>. Överväganden kan inkludera datakänslighet, datavolym, tillgänglighetskrav och inneboende risk."
+                    },
+                    {
+                        id: "15.4",
+                        title: "Ensure Service Provider Contracts Include Security Requirements",
+                        title_sv: "Säkerställ att leverantörsavtal innehåller säkerhetskrav",
+                        ig: ["IG2", "IG3"],
+                        description: "Ensure service provider contracts include <b>security requirements</b>. Example: minimum security program, incident notification, data encryption, and disposal.",
+                        description_sv: "Säkerställ att avtal med tjänsteleverantörer innehåller <b>säkerhetskrav</b>. Exempel: lägsta säkerhetsprogram, incidentrapportering, datakryptering och gallring."
+                    },
+                    {
+                        id: "15.5",
+                        title: "Assess Service Providers",
+                        title_sv: "Bedöm tjänsteleverantörer",
+                        ig: ["IG3"],
+                        description: "<b>Assess service providers</b> consistent with the policy. Assessment scope may vary based on classification. Reassess annually.",
+                        description_sv: "<b>Bedöm tjänsteleverantörer</b> i enlighet med policyn. Bedömningens omfattning kan variera beroende på klassificering. Ompröva årligen."
+                    },
+                    {
+                        id: "15.6",
+                        title: "Monitor Service Providers",
+                        title_sv: "Övervaka tjänsteleverantörer",
+                        ig: ["IG3"],
+                        description: "<b>Monitor service providers</b> consistent with the policy. Example: review compliance reports, release notes, dark web monitoring.",
+                        description_sv: "<b>Övervaka tjänsteleverantörer</b> i enlighet med policyn. Exempel: granska efterlevnadsrapporter, versionsinformation, övervakning av darknet."
+                    },
+                    {
+                        id: "15.7",
+                        title: "Securely Decommission Service Providers",
+                        title_sv: "Säker avveckling av tjänsteleverantörer",
+                        ig: ["IG3"],
+                        description: "<b>Securely decommission service providers</b>. Example: user/service account deactivation, termination of data flows, secure data disposal.",
+                        description_sv: "<b>Avveckla tjänsteleverantörer säkert</b>. Exempel: inaktivering av användar-/tjänstekonton, avslutande av dataflöden, säker datagallring."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 16 ---
+            { 
+                id: 16, 
+                title: "Application Software Security", 
+                title_sv: "Applikationssäkerhet", 
+                icon: "terminal",
+                
+                description: "Manage the <b>security life cycle</b> of in-house developed, hosted, or acquired software to <b>prevent, detect, and remediate</b> security weaknesses before they can impact the enterprise.",
+                description_sv: "Hantera <b>säkerhetslivscykeln</b> för egenutvecklad, hostad eller förvärvad programvara för att <b>förebygga, upptäcka och åtgärda</b> säkerhetsbrister innan de kan påverka företaget.",
+                
+                why_critical: "Applications provide a human-friendly interface to access data. Application flaws are the <b>attack vector of choice</b> lacking credentials. Vulnerabilities can be present due to insecure design, infrastructure, or coding mistakes.",
+                why_critical_sv: "Applikationer ger ett användarvänligt gränssnitt för att komma åt data. Applikationsbrister är den <b>föredragna attackvektorn</b> om inloggningsuppgifter saknas. Sårbarheter kan finnas på grund av osäker design, infrastruktur eller kodningsfel.",
+                
+                safeguards: [
+                    {
+                        id: "16.1",
+                        title: "Establish and Maintain a Secure Application Development Process",
+                        title_sv: "Upprätta och underhåll en säker applikationsutvecklingsprocess",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain a <b>secure application development process</b>. Address secure design, coding practices, training, and vulnerability management.",
+                        description_sv: "Upprätta och underhåll en <b>säker applikationsutvecklingsprocess</b>. Adressera säker design, kodningspraxis, utbildning och sårbarhetshantering."
+                    },
+                    {
+                        id: "16.2",
+                        title: "Establish and Maintain a Process to Accept and Address Software Vulnerabilities",
+                        title_sv: "Process för att ta emot och hantera programvarusårbarheter",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain a process to <b>accept and address reports</b> of software vulnerabilities, including a means for external entities to report.",
+                        description_sv: "Upprätta och underhåll en process för att <b>ta emot och hantera rapporter</b> om programvarusårbarheter, inklusive en möjlighet för externa parter att rapportera."
+                    },
+                    {
+                        id: "16.3",
+                        title: "Perform Root Cause Analysis on Security Vulnerabilities",
+                        title_sv: "Utför rotorsaksanalys på säkerhetssårbarheter",
+                        ig: ["IG2", "IG3"],
+                        description: "Perform <b>root cause analysis</b> on security vulnerabilities to evaluate underlying issues in code and move beyond just fixing individual bugs.",
+                        description_sv: "Utför <b>rotorsaksanalys</b> på säkerhetssårbarheter för att utvärdera underliggande problem i koden och gå bortom att bara fixa enskilda buggar."
+                    },
+                    {
+                        id: "16.4",
+                        title: "Establish and Manage an Inventory of Third-Party Software Components",
+                        title_sv: "Inventering av tredjepartskomponenter",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and manage an inventory of <b>third-party components</b> (Bill of Materials). Evaluate for risks and updates monthly.",
+                        description_sv: "Upprätta och hantera en inventering av <b>tredjepartskomponenter</b> (Bill of Materials). Utvärdera risker och uppdateringar varje månad."
+                    },
+                    {
+                        id: "16.5",
+                        title: "Use Up-to-Date and Trusted Third-Party Software Components",
+                        title_sv: "Använd uppdaterade och betrodda tredjepartskomponenter",
+                        ig: ["IG2", "IG3"],
+                        description: "Use <b>up-to-date and trusted</b> third-party software components. Acquire from trusted sources.",
+                        description_sv: "Använd <b>uppdaterade och betrodda</b> tredjepartskomponenter. Förvärva från betrodda källor."
+                    },
+                    {
+                        id: "16.6",
+                        title: "Establish and Maintain a Severity Rating System for Application Vulnerabilities",
+                        title_sv: "System för allvarlighetsbedömning av sårbarheter",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish a <b>severity rating system</b> to prioritize fixing discovered vulnerabilities.",
+                        description_sv: "Upprätta ett <b>system för allvarlighetsbedömning</b> för att prioritera åtgärdande av upptäckta sårbarheter."
+                    },
+                    {
+                        id: "16.7",
+                        title: "Use Standard Hardening Configuration Templates for Application Infrastructure",
+                        title_sv: "Använd härdningsmallar för applikationsinfrastruktur",
+                        ig: ["IG2", "IG3"],
+                        description: "Use standard <b>hardening configuration templates</b> for application infrastructure components (servers, databases, web servers).",
+                        description_sv: "Använd standardiserade <b>härdningsmallar</b> för applikationsinfrastrukturkomponenter (servrar, databaser, webbservrar)."
+                    },
+                    {
+                        id: "16.8",
+                        title: "Separate Production and Non-Production Systems",
+                        title_sv: "Separera produktions- och icke-produktionssystem",
+                        ig: ["IG2", "IG3"],
+                        description: "Maintain <b>separate environments</b> for production and non-production systems.",
+                        description_sv: "Upprätthåll <b>separata miljöer</b> för produktions- och icke-produktionssystem."
+                    },
+                    {
+                        id: "16.9",
+                        title: "Train Developers in Application Security Concepts and Secure Coding",
+                        title_sv: "Utbilda utvecklare i applikationssäkerhet och säker kodning",
+                        ig: ["IG2", "IG3"],
+                        description: "Ensure software development personnel receive <b>training in writing secure code</b> for their specific environment. Conduct annually.",
+                        description_sv: "Säkerställ att personal inom mjukvaruutveckling får <b>utbildning i att skriva säker kod</b> för sin specifika miljö. Genomför årligen."
+                    },
+                    {
+                        id: "16.10",
+                        title: "Apply Secure Design Principles in Application Architectures",
+                        title_sv: "Tillämpa principer för säker design",
+                        ig: ["IG2", "IG3"],
+                        description: "Apply <b>secure design principles</b>. Examples: least privilege, enforcing mediation, never trust user input.",
+                        description_sv: "Tillämpa <b>principer för säker design</b>. Exempel: minsta privilegium, tvingande medling, lita aldrig på användarinmatning."
+                    },
+                    {
+                        id: "16.11",
+                        title: "Leverage Vetted Modules or Services for Application Security Components",
+                        title_sv: "Använd granskade moduler för säkerhetskomponenter",
+                        ig: ["IG2", "IG3"],
+                        description: "Leverage <b>vetted modules or services</b> for identity management, encryption, and auditing. Do not develop your own encryption.",
+                        description_sv: "Använd <b>granskade moduler eller tjänster</b> för identitetshantering, kryptering och revision. Utveckla inte egen kryptering."
+                    },
+                    {
+                        id: "16.12",
+                        title: "Implement Code-Level Security Checks",
+                        title_sv: "Implementera säkerhetskontroller på kodnivå",
+                        ig: ["IG3"],
+                        description: "Apply <b>static and dynamic analysis tools</b> within the application life cycle to verify secure coding practices.",
+                        description_sv: "Tillämpa verktyg för <b>statisk och dynamisk analys</b> inom applikationslivscykeln för att verifiera säker kodningspraxis."
+                    },
+                    {
+                        id: "16.13",
+                        title: "Conduct Application Penetration Testing",
+                        title_sv: "Genomför penetrationstester av applikationer",
+                        ig: ["IG3"],
+                        description: "Conduct <b>application penetration testing</b>. Authenticated testing is better for business logic vulnerabilities.",
+                        description_sv: "Genomför <b>penetrationstester av applikationer</b>. Autentiserade tester är bättre för sårbarheter i affärslogik."
+                    },
+                    {
+                        id: "16.14",
+                        title: "Conduct Threat Modeling",
+                        title_sv: "Genomför hotmodellering",
+                        ig: ["IG3"],
+                        description: "Conduct <b>threat modeling</b> to identify design flaws before code is created.",
+                        description_sv: "Genomför <b>hotmodellering</b> för att identifiera designbrister innan kod skapas."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 17 ---
+            { 
+                id: 17, 
+                title: "Incident Response Management", 
+                title_sv: "Hantering av incidentrespons", 
+                icon: "activity",
+                
+                description: "Establish a program to develop and maintain an <b>incident response capability</b> (policies, plans, procedures, roles, training) to <b>prepare, detect, and quickly respond</b> to an attack.",
+                description_sv: "Upprätta ett program för att utveckla och underhålla en <b>förmåga till incidenthantering</b> (policyer, planer, rutiner, roller, utbildning) för att <b>förbereda, upptäcka och snabbt svara</b> på en attack.",
+                
+                why_critical: "We cannot expect protections to be effective 100% of the time. Without a <b>documented plan</b>, it is almost impossible to know the right investigative procedures, reporting, and communications strategy to successfully recover.",
+                why_critical_sv: "Vi kan inte förvänta oss att skydd är effektiva 100% av tiden. Utan en <b>dokumenterad plan</b> är det nästan omöjligt att veta rätt utredningsrutiner, rapportering och kommunikationsstrategi för att återhämta sig framgångsrikt.",
+                
+                safeguards: [
+                    {
+                        id: "17.1",
+                        title: "Designate Personnel to Manage Incident Handling",
+                        title_sv: "Utse personal för incidenthantering",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Designate <b>one key person</b>, and backups, to manage the incident handling process.",
+                        description_sv: "Utse <b>en nyckelperson</b>, och reserver, för att hantera incidenthanteringsprocessen."
+                    },
+                    {
+                        id: "17.2",
+                        title: "Establish and Maintain Contact Information for Reporting Security Incidents",
+                        title_sv: "Kontaktinformation för rapportering av incidenter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain <b>contact information</b> for parties that need to be informed of security incidents (internal, law enforcement, vendors).",
+                        description_sv: "Upprätta och underhåll <b>kontaktinformation</b> för parter som behöver informeras om säkerhetsincidenter (internt, polis, leverantörer)."
+                    },
+                    {
+                        id: "17.3",
+                        title: "Establish and Maintain an Enterprise Process for Reporting Incidents",
+                        title_sv: "Företagsprocess för rapportering av incidenter",
+                        ig: ["IG1", "IG2", "IG3"],
+                        description: "Establish and maintain a process for the <b>workforce to report</b> security incidents. Include timeframe, personnel, and mechanism.",
+                        description_sv: "Upprätta och underhåll en process för <b>personalen att rapportera</b> säkerhetsincidenter. Inkludera tidsram, personal och mekanism."
+                    },
+                    {
+                        id: "17.4",
+                        title: "Establish and Maintain an Incident Response Process",
+                        title_sv: "Upprätta och underhåll incidentresponsprocess",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain a documented <b>incident response process</b>. Address roles, compliance, and communication.",
+                        description_sv: "Upprätta och underhåll en dokumenterad <b>incidentresponsprocess</b>. Adressera roller, efterlevnad och kommunikation."
+                    },
+                    {
+                        id: "17.5",
+                        title: "Assign Key Roles and Responsibilities",
+                        title_sv: "Tilldela nyckelroller och ansvar",
+                        ig: ["IG2", "IG3"],
+                        description: "Assign <b>key roles and responsibilities</b> for incident response, including staff from responders, analysts, and third parties.",
+                        description_sv: "Tilldela <b>nyckelroller och ansvar</b> för incidentrespons, inklusive personal från insatsgrupper, analytiker och tredje part."
+                    },
+                    {
+                        id: "17.6",
+                        title: "Define Mechanisms for Communicating During Incident Response",
+                        title_sv: "Definiera kommunikationsmekanismer",
+                        ig: ["IG2", "IG3"],
+                        description: "Determine which <b>primary and secondary mechanisms</b> will be used to communicate during an incident (e.g., phone, secure chat).",
+                        description_sv: "Bestäm vilka <b>primära och sekundära mekanismer</b> som ska användas för att kommunicera under en incident (t.ex. telefon, säker chatt)."
+                    },
+                    {
+                        id: "17.7",
+                        title: "Conduct Routine Incident Response Exercises",
+                        title_sv: "Genomför rutinmässiga incidentövningar",
+                        ig: ["IG2", "IG3"],
+                        description: "Plan and conduct <b>routine incident response exercises</b> to test communication, decision making, and workflows. At least annually.",
+                        description_sv: "Planera och genomför <b>rutinmässiga incidentresponsövningar</b> för att testa kommunikation, beslutsfattande och arbetsflöden. Minst årligen."
+                    },
+                    {
+                        id: "17.8",
+                        title: "Conduct Post-Incident Reviews",
+                        title_sv: "Genomför utvärderingar efter incident",
+                        ig: ["IG2", "IG3"],
+                        description: "Conduct <b>post-incident reviews</b> to identify lessons learned and preventing recurrence.",
+                        description_sv: "Genomför <b>utvärderingar efter incident</b> för att identifiera lärdomar och förhindra upprepning."
+                    },
+                    {
+                        id: "17.9",
+                        title: "Establish and Maintain Security Incident Thresholds",
+                        title_sv: "Upprätta tröskelvärden för säkerhetsincidenter",
+                        ig: ["IG3"],
+                        description: "Establish and maintain <b>security incident thresholds</b>, differentiating between an incident and an event.",
+                        description_sv: "Upprätta och underhåll <b>tröskelvärden för säkerhetsincidenter</b>, för att skilja mellan en incident och en händelse."
+                    }
+                ]
+            },
+
+            // --- CIS CONTROL 18 ---
+            { 
+                id: 18, 
+                title: "Penetration Testing", 
+                title_sv: "Penetrationstester", 
+                icon: "shield",
+                
+                description: "Test the <b>effectiveness and resiliency</b> of enterprise assets through identifying and exploiting weaknesses in controls (people, processes, and technology), and <b>simulating the objectives and actions</b> of an attacker.",
+                description_sv: "Testa <b>effektiviteten och motståndskraften</b> hos företagstillgångar genom att identifiera och utnyttja svagheter i kontroller (människor, processer och teknik), och <b>simulera målen och handlingarna</b> hos en angripare.",
+                
+                why_critical: "A successful defensive posture requires a comprehensive program. <b>Independent penetration testing</b> can provide valuable and objective insights about the existence of vulnerabilities and the efficacy of defenses.",
+                why_critical_sv: "En framgångsrik försvarsställning kräver ett omfattande program. <b>Oberoende penetrationstester</b> kan ge värdefulla och objektiva insikter om förekomsten av sårbarheter och försvarets effektivitet.",
+                
+                safeguards: [
+                    {
+                        id: "18.1",
+                        title: "Establish and Maintain a Penetration Testing Program",
+                        title_sv: "Upprätta och underhåll program för penetrationstester",
+                        ig: ["IG2", "IG3"],
+                        description: "Establish and maintain a <b>penetration testing program</b> appropriate to size and complexity. Include scope, frequency, and limitations.",
+                        description_sv: "Upprätta och underhåll ett <b>program för penetrationstester</b> lämpligt för storlek och komplexitet. Inkludera omfattning, frekvens och begränsningar."
+                    },
+                    {
+                        id: "18.2",
+                        title: "Perform Periodic External Penetration Tests",
+                        title_sv: "Utför periodiska externa penetrationstester",
+                        ig: ["IG2", "IG3"],
+                        description: "Perform periodic <b>external penetration tests</b> based on program requirements, no less than annually.",
+                        description_sv: "Utför periodiska <b>externa penetrationstester</b> baserat på programkrav, minst en gång per år."
+                    },
+                    {
+                        id: "18.3",
+                        title: "Remediate Penetration Test Findings",
+                        title_sv: "Åtgärda fynd från penetrationstester",
+                        ig: ["IG2", "IG3"],
+                        description: "<b>Remediate penetration test findings</b> based on the vulnerability remediation process. Determine timeline and effort.",
+                        description_sv: "<b>Åtgärda fynd från penetrationstester</b> baserat på processen för sårbarhetsåtgärder. Bestäm tidslinje och insats."
+                    },
+                    {
+                        id: "18.4",
+                        title: "Validate Security Measures",
+                        title_sv: "Validera säkerhetsåtgärder",
+                        ig: ["IG3"],
+                        description: "<b>Validate security measures</b> after each penetration test. Modify rulesets and capabilities to detect techniques used.",
+                        description_sv: "<b>Validera säkerhetsåtgärder</b> efter varje penetrationstest. Modifiera regelverk och förmågor för att upptäcka tekniker som användes."
+                    },
+                    {
+                        id: "18.5",
+                        title: "Perform Periodic Internal Penetration Tests",
+                        title_sv: "Utför periodiska interna penetrationstester",
+                        ig: ["IG3"],
+                        description: "Perform periodic <b>internal penetration tests</b> based on program requirements, no less than annually.",
+                        description_sv: "Utför periodiska <b>interna penetrationstester</b> baserat på programkrav, minst en gång per år."
+                    }
+                ]
+            }
         ];
 
         // State
@@ -360,7 +1814,7 @@
                 element.innerText = displayString;
                 i++;
                 
-            }, 10); // Hastighet
+            }, 25); // Hastighet (justerad till 25ms för att vara långsammare/läsbarare)
             
             element.dataset.intervalId = interval;
         }
