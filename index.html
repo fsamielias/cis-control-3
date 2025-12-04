@@ -69,6 +69,17 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+        
+        /* Markör för terminal-effekten */
+        .cursor-block {
+            display: inline-block;
+            background-color: #fb923c; /* Orange-400 */
+            color: #020617;
+            width: 0.6em;
+            height: 1.1em;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden pb-[env(safe-area-inset-bottom)]">
@@ -96,6 +107,13 @@
                     <span class="text-[10px] text-slate-500 font-mono tracking-widest">v8.1 MOBILE PROTOCOL</span>
                 </div>
             </div>
+            
+            <!-- Language Toggle Switch -->
+            <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center space-x-1 bg-slate-900/80 border border-slate-700 rounded px-2 py-1 text-xs font-mono font-bold tracking-wider hover:border-cyan-500 active:scale-95 transition-all">
+                <span id="lang-en" class="text-cyan-400">EN</span>
+                <span class="text-slate-600">|</span>
+                <span id="lang-sv" class="text-slate-500">SV</span>
+            </button>
         </header>
 
         <!-- Main Content Area -->
@@ -111,30 +129,31 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Data
+        // Data med översättningar
         const controls = [
-            { id: 1, title: "Inventory and Control of Enterprise Assets", icon: "server" },
-            { id: 2, title: "Inventory and Control of Software Assets", icon: "layers" },
-            { id: 3, title: "Data Protection", icon: "database" },
-            { id: 4, title: "Secure Configuration of Enterprise Assets and Software", icon: "lock" },
-            { id: 5, title: "Account Management", icon: "users" },
-            { id: 6, title: "Access Control Management", icon: "shield" },
-            { id: 7, title: "Continuous Vulnerability Management", icon: "activity" },
-            { id: 8, title: "Audit Log Management", icon: "file-text" },
-            { id: 9, title: "Email and Web Browser Protections", icon: "globe" },
-            { id: 10, title: "Malware Defenses", icon: "triangle-alert" },
-            { id: 11, title: "Data Recovery", icon: "server" },
-            { id: 12, title: "Network Infrastructure Management", icon: "wifi" },
-            { id: 13, title: "Network Monitoring and Defense", icon: "eye" },
-            { id: 14, title: "Security Awareness and Skills Training", icon: "users" },
-            { id: 15, title: "Service Provider Management", icon: "globe" },
-            { id: 16, title: "Application Software Security", icon: "terminal" },
-            { id: 17, title: "Incident Response Management", icon: "activity" },
-            { id: 18, title: "Penetration Testing", icon: "shield" }
+            { id: 1, title: "Inventory and Control of Enterprise Assets", title_sv: "Inventering och kontroll av företagets tillgångar", icon: "server" },
+            { id: 2, title: "Inventory and Control of Software Assets", title_sv: "Inventering och kontroll av programvarutillgångar", icon: "layers" },
+            { id: 3, title: "Data Protection", title_sv: "Dataskydd", icon: "database" },
+            { id: 4, title: "Secure Configuration of Enterprise Assets and Software", title_sv: "Säker konfiguration av tillgångar och programvara", icon: "lock" },
+            { id: 5, title: "Account Management", title_sv: "Kontohantering", icon: "users" },
+            { id: 6, title: "Access Control Management", title_sv: "Hantering av åtkomstkontroll", icon: "shield" },
+            { id: 7, title: "Continuous Vulnerability Management", title_sv: "Kontinuerlig sårbarhetshantering", icon: "activity" },
+            { id: 8, title: "Audit Log Management", title_sv: "Hantering av audit-loggar", icon: "file-text" },
+            { id: 9, title: "Email and Web Browser Protections", title_sv: "Skydd för e-post och webbläsare", icon: "globe" },
+            { id: 10, title: "Malware Defenses", title_sv: "Skydd mot skadlig kod", icon: "triangle-alert" },
+            { id: 11, title: "Data Recovery", title_sv: "Dataåterställning", icon: "server" },
+            { id: 12, title: "Network Infrastructure Management", title_sv: "Hantering av nätverksinfrastruktur", icon: "wifi" },
+            { id: 13, title: "Network Monitoring and Defense", title_sv: "Nätverksövervakning och försvar", icon: "eye" },
+            { id: 14, title: "Security Awareness and Skills Training", title_sv: "Säkerhetsmedvetenhet och utbildning", icon: "users" },
+            { id: 15, title: "Service Provider Management", title_sv: "Hantering av tjänsteleverantörer", icon: "globe" },
+            { id: 16, title: "Application Software Security", title_sv: "Applikationssäkerhet", icon: "terminal" },
+            { id: 17, title: "Incident Response Management", title_sv: "Hantering av incidentrespons", icon: "activity" },
+            { id: 18, title: "Penetration Testing", title_sv: "Penetrationstester", icon: "shield" }
         ];
 
         // State
         let activeControlId = null;
+        let currentLang = 'en'; // 'en' or 'sv'
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
@@ -152,7 +171,93 @@
             window.history.replaceState({ view: 'home' }, '');
 
             render();
+            updateLangToggleUI();
         });
+
+        // Language Logic
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'sv' : 'en';
+            updateLangToggleUI();
+            
+            // Trigger wipe effect on all visible titles
+            const titleElements = document.querySelectorAll('.effect-target');
+            titleElements.forEach(el => {
+                // Find data
+                let newText = "";
+                
+                // Check if it is a list item
+                if (el.dataset.controlId) {
+                    const id = parseInt(el.dataset.controlId);
+                    const data = controls.find(c => c.id === id);
+                    newText = currentLang === 'sv' ? data.title_sv : data.title;
+                } 
+                // Or the main header in detail view
+                else if (el.id === 'detail-title') {
+                    const data = controls.find(c => c.id === activeControlId);
+                    if(data) newText = currentLang === 'sv' ? data.title_sv : data.title;
+                }
+
+                if (newText) {
+                    runTerminalWipeEffect(el, newText, el.innerText);
+                }
+            });
+        }
+
+        function updateLangToggleUI() {
+            const enEl = document.getElementById('lang-en');
+            const svEl = document.getElementById('lang-sv');
+            
+            if (currentLang === 'en') {
+                enEl.className = 'text-cyan-400 font-bold';
+                svEl.className = 'text-slate-600 font-normal';
+            } else {
+                enEl.className = 'text-slate-600 font-normal';
+                svEl.className = 'text-cyan-400 font-bold';
+            }
+        }
+
+        // The Terminal Wipe Effect Logic
+        function runTerminalWipeEffect(element, newText, oldText) {
+            let i = 0;
+            const cursor = "█"; // Block cursor
+            
+            // Vi använder maxlängden för att avgöra när loopen är klar.
+            const maxLength = Math.max(newText.length, oldText.length);
+            
+            // Rensa eventuell pågående animation
+            if (element.dataset.intervalId) {
+                clearInterval(parseInt(element.dataset.intervalId));
+            }
+
+            const interval = setInterval(() => {
+                // Bygg strängen:
+                // Del 1: Den nya texten som skrivits fram hittills
+                const part1 = newText.substring(0, i);
+                
+                // Del 2: Resten av den gamla texten som inte blivit "överskriven" än
+                // Vi börjar från i + 1 för att simulera att markören "äter" ett tecken
+                let part2 = "";
+                if (i < oldText.length) {
+                    part2 = oldText.substring(i + 1);
+                }
+                
+                // Sätt ihop: Ny text + Markör + Gammal text
+                let displayString = part1 + cursor + part2;
+                
+                // Om vi nått slutet, ta bort markören
+                if (i >= maxLength) {
+                    displayString = newText;
+                    clearInterval(interval);
+                    delete element.dataset.intervalId;
+                }
+                
+                element.innerText = displayString;
+                i++;
+                
+            }, 20); // Hastighet i ms (lägre = snabbare)
+            
+            element.dataset.intervalId = interval;
+        }
 
         // Navigation Actions
         function navigateToControl(id) {
@@ -164,7 +269,6 @@
 
         function navigateBack() {
             window.history.back();
-            // State uppdateras av popstate-lyssnaren
         }
 
         // Render Functions
@@ -177,10 +281,9 @@
                 if(footerEl) footerEl.style.display = 'block';
             } else {
                 renderDetailView(mainEl, activeControlId);
-                if(footerEl) footerEl.style.display = 'none'; // Dölj footer i detaljvy för mer utrymme
+                if(footerEl) footerEl.style.display = 'none';
             }
             
-            // Uppdatera ikoner efter rendering
             lucide.createIcons();
         }
 
@@ -191,8 +294,8 @@
             `;
 
             controls.forEach(control => {
-                // Pad ID med nolla
                 const idStr = control.id.toString().padStart(2, '0');
+                const title = currentLang === 'sv' ? control.title_sv : control.title;
                 
                 html += `
                     <button onclick="navigateToControl(${control.id})" 
@@ -216,12 +319,14 @@
                             <div class="text-[10px] font-mono text-cyan-700 mb-0.5 group-hover:text-cyan-400 font-medium">
                                 CIS-${idStr}
                             </div>
-                            <h3 class="text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug break-words">
-                                ${control.title}
+                            <!-- Added min-h-[3.25rem] to enforce height stability -->
+                            <h3 class="effect-target text-sm font-bold text-orange-400 group-hover:text-orange-300 leading-snug break-words min-h-[3.25rem] flex items-center" 
+                                data-control-id="${control.id}">
+                                ${title}
                             </h3>
                         </div>
 
-                        <!-- Chevron Right (Mobile hint) -->
+                        <!-- Chevron Right -->
                         <div class="text-slate-700 group-hover:text-cyan-500 transition-colors self-center">
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </div>
@@ -241,6 +346,7 @@
             if (!data) return; 
             
             const idStr = data.id.toString().padStart(2, '0');
+            const title = currentLang === 'sv' ? data.title_sv : data.title;
 
             container.innerHTML = `
                 <div class="animate-fade-in pb-10">
@@ -267,7 +373,10 @@
                             <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-slate-950 border border-slate-800 shadow-inner">
                                 <i data-lucide="${data.icon}" class="w-8 h-8 text-cyan-500"></i>
                             </div>
-                            <h2 class="text-2xl md:text-3xl font-bold text-orange-400 mb-4 leading-tight">${data.title}</h2>
+                            <!-- Added 'effect-target' and 'id' for effect targeting -->
+                            <h2 id="detail-title" class="effect-target text-2xl md:text-3xl font-bold text-orange-400 mb-4 leading-tight">
+                                ${title}
+                            </h2>
                             <div class="h-1 w-16 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto rounded-full opacity-60"></div>
                         </div>
 
